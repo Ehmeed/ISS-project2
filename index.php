@@ -13,7 +13,7 @@
 	$password = '';
 
 	// check is user already logged in, redirect
-	if(isset($_SESSION['login'])){
+	if(isset($_SESSION['login'])==''){
 		header("Location: home.php");
         exit;
 	}
@@ -33,8 +33,8 @@
 
 			if(!$error){
 				// check login and password in db
-				$password = password_hash($password, PASSWORD_DEFAULT);
-				$query = "SELECT ID, login, password FROM students WHERE login='$login'";
+				$password = md5($password);
+				$query = "SELECT id_resitel, login, password FROM student WHERE login='$login'";
 				$data = mysqli_query($conn, $query) or die("Cannot access database.").mysqli_error($conn);
 				$data_array = mysqli_fetch_array($data, MYSQLI_ASSOC);
 
@@ -93,7 +93,7 @@
             <div class="form-group">
             	<div class="input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-            	<input type="email" name="email" class="form-control" placeholder="Login" maxlength="40" />
+            	<input type="login" name="login" class="form-control" placeholder="Login" maxlength="40" />
                 </div>
                 <span class="text-danger"><?php echo $loginError; ?></span>
             </div>
@@ -101,7 +101,7 @@
             <div class="form-group">
             	<div class="input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-            	<input type="password" name="pass" class="form-control" placeholder="Heslo" maxlength="15" />
+            	<input type="password" name="password" class="form-control" placeholder="Heslo" maxlength="15" />
                 </div>
                 <span class="text-danger"><?php echo $passwordError; ?></span>
             </div>
