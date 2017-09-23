@@ -1,3 +1,5 @@
+-- primary keys TODO
+
 drop TABLE informace;
 drop TABLE predmet;
 drop TABLE projekt;
