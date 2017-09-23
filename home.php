@@ -1,6 +1,8 @@
-<?php
+﻿<?php
 	session_start();
 ?>
+
+<!-- html část-->
 
 <!DOCTYPE html>
 <html>

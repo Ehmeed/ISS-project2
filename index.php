@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 	ob_start();
 	session_start();
@@ -51,6 +51,8 @@
 
 	
 ?>
+
+<!-- html část-->
 
 <!DOCTYPE html>
 <html>
