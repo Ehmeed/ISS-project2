@@ -73,8 +73,16 @@ password VARCHAR(255) NOT NULL
 CREATE TABLE tym(
 id_resitel INT NOT NULL,
 nazev_tymu VARCHAR(30) NOT NULL,
-loginy_clenu VARCHAR(100) NOT NULL,
-login_vedouciho VARCHAR(8) NOT NULL
+login_vedouciho VARCHAR(8) NOT NULL,
+login_clen1 VARCHAR(8),
+login_clen2 VARCHAR(8),
+login_clen3 VARCHAR(8),
+login_clen4 VARCHAR(8),
+login_clen5 VARCHAR(8),
+login_clen6 VARCHAR(8),
+login_clen7 VARCHAR(8),
+login_clen8 VARCHAR(8),
+login_clen9 VARCHAR(8)
 );
 
 
