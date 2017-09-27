@@ -20,6 +20,7 @@ garant VARCHAR(50) NOT NULL
 
 CREATE TABLE vyucujici(
 id_vyucujici INT AUTO_INCREMENT PRIMARY KEY,
+login VARCHAR(8) NOT NULL,
 jmeno VARCHAR(50) NOT NULL,
 titul VARCHAR(25),
 kontakt INT
