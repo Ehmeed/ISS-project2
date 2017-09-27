@@ -12,32 +12,17 @@
 </head>
 <body>
 
-<div class="container">
+<div class="wrap">
 
     <div id="login-form">
-    <div class="col-md-12">
 
-        <div class="form-group">
-        <h2>Fakultní informační systém</h2>
-        </div>
+        <center>
+            <br><h2>Fakultní informační systém</h2>
+            <hr width="350px">
+            <a href="index.php" style="text-decoration: none"><button class="tlacitko2"><h4>PŘIHLÁSIT SE JAKO STUDENT</h4></button></a><br><br>
+            <a href="index.php" style="text-decoration: none"><button class="tlacitko2"><h4>PŘIHLÁSIT SE JAKO VYUČUJÍCÍ</h4></button></a>
+        </center>
 
-        <div class="form-group">
-            <hr />
-        </div>
-
-    <div class="form-group">
-        <div class="input-group">
-            <a href="index.php" style="text-decoration: none"><button type="submit" class="btn btn-block btn-primary"><h4>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspPŘIHLÁSIT SE JAKO STUDENT&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</h4></button></a>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="input-group">
-            <a href="index.php" style="text-decoration: none"><button type="submit" class="btn btn-block btn-primary"><h4>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspPŘIHLÁSIT SE JAKO VYUČUJÍCÍ&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</h4></button></a>
-    </div>
-    </div>
-
-    </div>
     </div>
 
 </div>
