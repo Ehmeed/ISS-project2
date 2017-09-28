@@ -12,78 +12,52 @@
 </head>
 <body>
 
-<div class="wrap">
+<div class="web">
 
-    <!--Header-->
+    <!--Hlavicka-->
 
-    <nav class="nav-bar navbar-inverse" role="navigation">
-        <div id ="top-menu" class="container-fluid active">
-            <a class="navbar-brand" href="#">FAKULTNÍ INFORMAČNÍ SYSTÉM</a>
+    <div class="header">
+        <div class="container-fluid active">
+            <a class="plain" href="home.php"><h3>FAKULTNÍ INFORMAČNÍ SYSTÉM</h3></a>
         </div>
-    </nav>
+    </div>
 
     <!--Menu-->
 
-    <aside id="side-menu" class="aside">
-        <ul class="nav nav-list accordion">
+    <div class="menu">
+        <ul>
             <li>
-                <div class="link"><a href="home.php" class="plain">ÚVOD</a></div>
+                <div class="link"><a href="home.php" class="plain"><h4>ÚVOD</h4><hr></a></div>
             </li>
             <li>
-                <div class="link"><a href="lectures.php" class="plain">PŘEDMĚTY</a></div>
+                <div class="link"><a href="lectures.php" class="plain"><h4>PŘEDMĚTY</h4><hr></a></div>
             </li>
             <li>
-                <div class="link"><a href="projects.php" class="plain">PROJEKTY</a></div>
+                <div class="link"><a href="projects.php" class="plain"><h4>PROJEKTY</h4><hr></a></div>
             </li>
             <li>
-                <div class="link"><a href="other.php" class="plain">OSTATNÍ</a></div>
+                <div class="link"><a href="other.php" class="plain"><h4>OSTATNÍ</h4><hr></a></div>
             </li>
 
             <li>
-                <div class="link">ODHLÁSIT SE</div>
+                <div class="link"><h4>ODHLÁSIT SE</h4><hr></div>
             </li>
 
         </ul>
-    </aside>
+    </div>
 
-    <!--Body content-->
-    <div class="content">
+    <!--Obsah stranky-->
+    <div class="obsah">
 
-        <div class="top-bar">
-            <a href="#menu" class="side-menu-link burger">
-                <span class='burger_inside' id='bgrOne'></span>
-                <span class='burger_inside' id='bgrTwo'></span>
-                <span class='burger_inside' id='bgrThree'></span>
-            </a>
-        </div>
-
-        <section class="content-inner">
+        <div class="vnitrni_obsah">
             <h2>Předměty</h2>
-            <h3>
-                <div class="form-group">
-                    <div class="input-group" align="right">
-                        <a href="current.php" style="text-decoration: none"><button class="btn btn-block btn-primary"><h4>AKTUÁLNÍ PROJEKTY&nbsp&nbsp&nbsp</h4></button></a>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="input-group" align="right">
-                        <a href="past.php" style="text-decoration: none"><button class="btn btn-block btn-primary"><h4>PŘEDCHOZÍ PROJEKTY</h4></button></a>
-                    </div>
-                </div>
-            </h3>
-        </section>
+                <a href="current.php" class="link"><button class="tlacitko"><h4>AKTUÁLNÍ PROJEKTY</h4></button></a><br><br>
+                <a href="past.php" class="link"><button class="tlacitko"><h4>PŘEDCHOZÍ PROJEKTY</h4></button></a>
+        </div>
 
     </div>
 
 </div>
-
-<script src="assets/jquery-1.11.3-jquery.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script>
-    var time = new Date();
-    document.getElementById("currTime").innerHTML = time.toLocaleTimeString();
-</script>
 
 </body>
 </html>

@@ -6,52 +6,60 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Předměty - Fakultní informační systém</title>
+    <title>Ostatní - Fakultní informační systém</title>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css"  />
     <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 <body>
 
-<div class="wrap">
+<div class="web">
 
-    <!--Header-->
+    <!--Hlavicka-->
 
-    <nav class="nav-bar navbar-inverse" role="navigation">
-        <div id ="top-menu" class="container-fluid active">
-            <a class="navbar-brand" href="#">FAKULTNÍ INFORMAČNÍ SYSTÉM</a>
+    <div class="header">
+        <div class="container-fluid active">
+            <a class="plain" href="home.php"><h3>FAKULTNÍ INFORMAČNÍ SYSTÉM</h3></a>
         </div>
-    </nav>
+    </div>
 
     <!--Menu-->
 
-    <aside id="side-menu" class="aside">
-        <ul class="nav nav-list accordion">
+    <div class="menu">
+        <ul>
             <li>
-                <div class="link"><a href="home.php" class="plain">ÚVOD</a></div>
+                <div class="link"><a href="home.php" class="plain"><h4>ÚVOD</h4><hr></a></div>
             </li>
             <li>
-                <div class="link"><a href="lectures.php" class="plain">PŘEDMĚTY</a></div>
+                <div class="link"><a href="lectures.php" class="plain"><h4>PŘEDMĚTY</h4><hr></a></div>
             </li>
             <li>
-                <div class="link"><a href="projects.php" class="plain">PROJEKTY</a></div>
+                <div class="link"><a href="projects.php" class="plain"><h4>PROJEKTY</h4><hr></a></div>
             </li>
             <li>
-                <div class="link"><a href="other.php" class="plain">OSTATNÍ</a></div>
+                <div class="link"><a href="other.php" class="plain"><h4>OSTATNÍ</h4><hr></a></div>
             </li>
 
             <li>
-                <div class="link">ODHLÁSIT SE</div>
+                <div class="link"><h4>ODHLÁSIT SE</h4><hr></div>
             </li>
 
         </ul>
-    </aside>
+    </div>
 
-    <!--Body content-->
+    <!--Obsah stranky-->
+    <div class="obsah">
+
+        <div class="vnitrni_obsah">
+            <h2>Předměty</h2>
+            <a href="" class="link"><button class="tlacitko"><h4>POTVRZENÍ O STUDIU</h4></button></a><br><br>
+            <a href="" class="link"><button class="tlacitko"><h4>VÝSTUPNÍ LIST STUDENTA</h4></button></a><br><br>
+            <a href="" class="link"><button class="tlacitko"><h4>VÝSTUPNÍ LIST ABSOLVENTA</h4></button></a><br><br>
+            <a href="info.php" class="link"><button class="tlacitko"><h4>INFORMACE</h4></button></a>
+        </div>
+
+    </div>
 
 </div>
-
-<script src="assets/jquery-1.11.3-jquery.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
 
 </body>
 </html>
