@@ -32,7 +32,8 @@ nazev VARCHAR(50) NOT NULL,
 popis VARCHAR(100) NOT NULL, 
 maximum_bodu INT NOT NULL,
 minimum_bodu INT NOT NULL,
-zadavatel INT
+zadavatel INT,
+predmet NOT NULL
 );
 
 CREATE TABLE varianta (
@@ -73,16 +74,13 @@ password VARCHAR(255) NOT NULL
 CREATE TABLE tym(
 id_resitel INT NOT NULL,
 nazev_tymu VARCHAR(30) NOT NULL,
-login_vedouciho VARCHAR(8) NOT NULL,
-login_clen1 VARCHAR(8),
-login_clen2 VARCHAR(8),
-login_clen3 VARCHAR(8),
-login_clen4 VARCHAR(8),
-login_clen5 VARCHAR(8),
-login_clen6 VARCHAR(8),
-login_clen7 VARCHAR(8),
-login_clen8 VARCHAR(8),
-login_clen9 VARCHAR(8)
+login_vedouciho VARCHAR(8) NOT NULL
+);
+
+CREATE TABLE clenove_teamu(
+id_clena INT AUTO_INCREMENT PRIMARY KEY,
+id_teamu INT,
+login_clena VARCHAR(8)
 );
 
 
@@ -90,6 +88,7 @@ login_clen9 VARCHAR(8)
 
 ALTER TABLE predmet ADD CONSTRAINT FK_vyucujici FOREIGN KEY (id_vyucujici) REFERENCES vyucujici(id_vyucujici);
 ALTER TABLE projekt ADD CONSTRAINT FK_zadavatel FOREIGN KEY (zadavatel) REFERENCES vyucujici(id_vyucujici);
+ALTER TABLE projekt ADD CONSTRAINT FK_predmet FOREIGN KEY (predmet) REFERENCES predmet(id_predmet);
 ALTER TABLE varianta ADD CONSTRAINT FK_vedouci FOREIGN KEY (vedouci) REFERENCES vyucujici(id_vyucujici);
 ALTER TABLE informace ADD CONSTRAINT FK_hodnotici FOREIGN KEY (hodnotici) REFERENCES vyucujici(id_vyucujici);
 ALTER TABLE student ADD CONSTRAINT FK_student FOREIGN KEY (id_resitel) REFERENCES resitel(id_resitel);
@@ -97,6 +96,7 @@ ALTER TABLE tym ADD CONSTRAINT FK_tym FOREIGN KEY (id_resitel) REFERENCES resite
 ALTER TABLE resitel ADD CONSTRAINT FK_reseni FOREIGN KEY (info_reseni) REFERENCES informace(id_informace);
 ALTER TABLE varianta ADD CONSTRAINT FK_projekt FOREIGN KEY (projekt) REFERENCES projekt(id_projekt);
 ALTER TABLE resitel ADD CONSTRAINT FK_varianta FOREIGN KEY (varianta) REFERENCES varianta(id_varianta);
+ALTER TABLE clenove_teamu ADD CONSTRAINT FK_team FOREIGN KEY (id_teamu) REFERENCES tym(id_resitel);
 
 
 
