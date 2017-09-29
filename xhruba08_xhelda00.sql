@@ -1,4 +1,4 @@
--- primary keys TODO
+
 
 drop TABLE informace;
 drop TABLE predmet;
@@ -8,6 +8,9 @@ drop TABLE student;
 drop TABLE tym;
 drop TABLE varianta;
 drop TABLE vyucujici;
+drop table zapsany_predmet;
+drop table clenove_teamu;
+
 
 CREATE TABLE predmet(
 id_predmet INT AUTO_INCREMENT PRIMARY KEY,
@@ -21,6 +24,7 @@ garant VARCHAR(50) NOT NULL
 CREATE TABLE vyucujici(
 id_vyucujici INT AUTO_INCREMENT PRIMARY KEY,
 login VARCHAR(8) NOT NULL,
+password VARCHAR(255) NOT NULL,
 jmeno VARCHAR(50) NOT NULL,
 titul VARCHAR(25),
 kontakt INT
@@ -33,7 +37,7 @@ popis VARCHAR(100) NOT NULL,
 maximum_bodu INT NOT NULL,
 minimum_bodu INT NOT NULL,
 zadavatel INT,
-predmet NOT NULL
+predmet INT NOT NULL
 );
 
 CREATE TABLE varianta (
@@ -68,8 +72,8 @@ titul VARCHAR(25),
 login VARCHAR(8) NOT NULL,
 rodne_cislo INT NOT NULL,
 password VARCHAR(255) NOT NULL
-
 );
+ALTER TABLE student ADD UNIQUE (login);
 
 CREATE TABLE tym(
 id_resitel INT NOT NULL,
@@ -78,11 +82,14 @@ login_vedouciho VARCHAR(8) NOT NULL
 );
 
 CREATE TABLE clenove_teamu(
-id_clena INT AUTO_INCREMENT PRIMARY KEY,
 id_teamu INT,
 login_clena VARCHAR(8)
 );
 
+CREATE TABLE zapsany_predmet(
+login VARCHAR(8) NOT NULL,
+id_predmet INT NOT NULL
+);
 
 -- nastaveni cizich klicu
 
@@ -97,7 +104,8 @@ ALTER TABLE resitel ADD CONSTRAINT FK_reseni FOREIGN KEY (info_reseni) REFERENCE
 ALTER TABLE varianta ADD CONSTRAINT FK_projekt FOREIGN KEY (projekt) REFERENCES projekt(id_projekt);
 ALTER TABLE resitel ADD CONSTRAINT FK_varianta FOREIGN KEY (varianta) REFERENCES varianta(id_varianta);
 ALTER TABLE clenove_teamu ADD CONSTRAINT FK_team FOREIGN KEY (id_teamu) REFERENCES tym(id_resitel);
-
+ALTER TABLE zapsany_predmet ADD CONSTRAINT FK_login FOREIGN KEY (login) REFERENCES student(login);
+ALTER TABLE zapsany_predmet ADD CONSTRAINT FK_id_predmet FOREIGN KEY (id_predmet) REFERENCES predmet(id_predmet);
 
 
 
@@ -114,11 +122,11 @@ INSERT INTO predmet(nazev, id_vyucujici, cvicici, prednasejici, garant) VALUES('
 INSERT INTO predmet(nazev, id_vyucujici, cvicici, prednasejici, garant) VALUES('Základy programování',4,'Pavel Eljanov','Alexander Grischuk','Yangyi Yu');
 
 
-INSERT INTO projekt(nazev, popis, maximum_bodu, minimum_bodu, zadavatel) VALUES ('IDS 1', 'http://www.fit.vutbr.cz/IDS/asdfsdf',5 ,3,1 );
-INSERT INTO projekt(nazev, popis, maximum_bodu, minimum_bodu, zadavatel) VALUES ('IDS 2', 'http://www.fit.vutbr.cz/IDS/ssgfbsdf',5 ,0,2 );
-INSERT INTO projekt(nazev, popis, maximum_bodu, minimum_bodu, zadavatel) VALUES ('IDS 3', 'http://www.fit.vutbr.cz/IDS/fgfgfsdf',5 ,0,3 );
-INSERT INTO projekt(nazev, popis, maximum_bodu, minimum_bodu, zadavatel) VALUES ('IDS 4', 'http://www.fit.vutbr.cz/IDS/asghghgf',5 ,0,1 );
-INSERT INTO projekt(nazev, popis, maximum_bodu, minimum_bodu, zadavatel) VALUES ('IDS 5', 'http://www.fit.vutbr.cz/IDS/aasddkld',19 ,0,5 );
+INSERT INTO projekt(nazev, popis, maximum_bodu, minimum_bodu, zadavatel, predmet) VALUES ('IDS 1', 'http://www.fit.vutbr.cz/IDS/asdfsdf',5 ,3,1, 2 );
+INSERT INTO projekt(nazev, popis, maximum_bodu, minimum_bodu, zadavatel, predmet) VALUES ('IDS 2', 'http://www.fit.vutbr.cz/IDS/ssgfbsdf',5 ,0,2, 1 );
+INSERT INTO projekt(nazev, popis, maximum_bodu, minimum_bodu, zadavatel, predmet) VALUES ('IDS 3', 'http://www.fit.vutbr.cz/IDS/fgfgfsdf',5 ,0,3, 2 );
+INSERT INTO projekt(nazev, popis, maximum_bodu, minimum_bodu, zadavatel, predmet) VALUES ('IDS 4', 'http://www.fit.vutbr.cz/IDS/asghghgf',5 ,0,1, 3 );
+INSERT INTO projekt(nazev, popis, maximum_bodu, minimum_bodu, zadavatel, predmet) VALUES ('IDS 5', 'http://www.fit.vutbr.cz/IDS/aasddkld',19 ,0,5, 4 );
 
 INSERT INTO varianta(maximum_resitelu, popis, studentu_v_tymu, vedouci, projekt) VALUES(100,'http://www.fit.vutbr.cz/IDS/aasdsdf',2, 2,1);
 INSERT INTO varianta(maximum_resitelu, popis, studentu_v_tymu, vedouci, projekt) VALUES(56,'http://www.fit.vutbr.cz/IDS/agffgsdf',3, 1,1);
@@ -154,11 +162,11 @@ INSERT INTO student(id_resitel, jmeno, prijmeni, login, rodne_cislo, titul, pass
 INSERT INTO student(id_resitel, jmeno, prijmeni, login, rodne_cislo, titul, password) VALUES(4, 'Tomáš',  'Svoboda', 'xsvobo95', 9503294812,  '', 'a');
 INSERT INTO student(id_resitel, jmeno, prijmeni, login, rodne_cislo, titul, password) VALUES(5, 'František',  'Veselý', 'xvesel65', 9503294823, '', 'a');
 
-INSERT INTO tym(id_resitel, nazev_tymu, loginy_clenu, login_vedouciho) VALUES(6, 'Norway Gnomes', 'xhruba08, xhelda00', 'xsvobo95');
-INSERT INTO tym(id_resitel, nazev_tymu, loginy_clenu, login_vedouciho) VALUES(7, 'Saint-Louis Bishops', 'xnovak81', 'xvesel65');
-INSERT INTO tym(id_resitel, nazev_tymu, loginy_clenu, login_vedouciho) VALUES(8, 'ChessBrahs', 'xspanel01', 'xhelda00');
-INSERT INTO tym(id_resitel, nazev_tymu, loginy_clenu, login_vedouciho) VALUES(9, 'Colombus Cardinals', 'xzatec05', 'xkurat01');
-INSERT INTO tym(id_resitel, nazev_tymu, loginy_clenu, login_vedouciho) VALUES(10, 'New York Knights', 'xcerny02, xcerma01', 'xplasi09');
+INSERT INTO tym(id_resitel, nazev_tymu, login_vedouciho) VALUES(6, 'Norway Gnomes', 'xsvobo95');
+INSERT INTO tym(id_resitel, nazev_tymu,  login_vedouciho) VALUES(7, 'Saint-Louis Bishops', 'xvesel65');
+INSERT INTO tym(id_resitel, nazev_tymu,  login_vedouciho) VALUES(8, 'ChessBrahs',  'xhelda00');
+INSERT INTO tym(id_resitel, nazev_tymu,  login_vedouciho) VALUES(9, 'Colombus Cardinals',  'xkurat01');
+INSERT INTO tym(id_resitel, nazev_tymu,  login_vedouciho) VALUES(10, 'New York Knights', 'xplasi09');
 
 
 -- SELECT QUERIES
