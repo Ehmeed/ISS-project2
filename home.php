@@ -1,5 +1,6 @@
 ﻿<?php
 	session_start();
+    require_once 'dbconnect.php';
 ?>
 
 <!DOCTYPE html>
@@ -53,8 +54,12 @@
         <div class="vnitrni_obsah">
             <h2>Úvod</h2>
             <h4>Poslední přihlášení: <span id="currTime"></span></h4>
-            <h4>Jméno:</h4>
-            <h4>Login:</h4>
+            <h4>Jméno: <?php 
+                    $login = $_SESSION['login'];
+                    $data_array = dbquery("SELECT jmeno, prijmeni FROM student WHERE login='$login'", $conn);
+                    echo $data_array['jmeno']. ' ' . $data_array['prijmeni'];
+            ?></h4>
+            <h4>Login: <?php echo $_SESSION['login'] ?></h4>
         </div>
 
     </div>
