@@ -1,5 +1,6 @@
 <?php
     session_start();
+    require_once 'dbconnect.php';
 ?>
 
 <!DOCTYPE html>
@@ -51,6 +52,17 @@
 
         <div class="vnitrni_obsah">
             <h2>Registrace předmětů</h2>
+            <?php
+            $query = "SELECT * FROM predmet";
+            $data = mysqli_query($conn, $query) or die("Cannot access database.").mysqli_error($conn);
+            while($data_array = mysqli_fetch_array($data, MYSQLI_ASSOC)){
+                echo $data_array['nazev'];
+                ?>
+                <br>
+                <?php
+            }
+
+            ?>
 
         </div>
 
