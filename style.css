@@ -6,6 +6,21 @@ a.plain {
     color: #FFFFFF;
 }
 
+
+th, td {
+	font-size: 16px;
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table {
+	width: 65%; 
+	border-color: #9f9f9f;" 
+	border: 1; 
+	background-color: #fff;
+}
+
 *{
 	margin:0;
 	padding:0;
