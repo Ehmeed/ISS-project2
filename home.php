@@ -1,12 +1,12 @@
-﻿<?php
-	session_start();
+<?php
+    session_start();
     require_once 'check_login.php';
     require_once 'dbconnect.php';
-    $title = 'Úvod - Fakultní informační systém';
+    $title = '�vod - Fakultní informační systém';
     include("template/header.php"); 
 ?>
 
- <!--Obsah stranky-->          
+<!--Obsah stranky-->          
             <h2>Úvod</h2>
             <h4><b>Poslední přihlášení:</b> <i><span id="currTime"></span></i></h4>
             <h4><b>Jméno:</b> <?php 
@@ -22,5 +22,6 @@
     var time = new Date();
     document.getElementById("currTime").innerHTML = time.toLocaleTimeString();
 </script>    
+            
 
 <?php include("template/footer.php");?>
