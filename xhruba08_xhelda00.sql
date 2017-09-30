@@ -1,5 +1,3 @@
-
-
 drop TABLE informace;
 drop TABLE predmet;
 drop TABLE projekt;
@@ -124,11 +122,11 @@ INSERT INTO vyucujici(jmeno,titul,kontakt) VALUES('Hikaru Nakamura','',123123123
 INSERT INTO vyucujici(jmeno,titul,kontakt) VALUES('Boris Spasky','',123131233);
 INSERT INTO vyucujici(jmeno,titul,kontakt) VALUES('Pavel Eljanov','',123456787);
 
-INSERT INTO predmet(nazev,  id_cvicici, id_prednasejici, id_garant, kapacita) VALUES('Databázové systémy',2, 1, 1, 100);
+INSERT INTO predmet(nazev,  id_cvicici, id_prednasejici, id_garant, kapacita) VALUES('DatabĂˇzovĂ© systĂ©my',2, 1, 1, 100);
 INSERT INTO predmet(nazev,  id_cvicici, id_prednasejici, id_garant, kapacita) VALUES('Matematika 1',2,  1, 1, 20);
 INSERT INTO predmet(nazev,  id_cvicici, id_prednasejici, id_garant, kapacita) VALUES('Fyzika 3',3,1,  1, 30);
-INSERT INTO predmet(nazev,  id_cvicici, id_prednasejici, id_garant, kapacita) VALUES('Právní minimum',5, 1, 1, 40);
-INSERT INTO predmet(nazev,  id_cvicici, id_prednasejici, id_garant, kapacita) VALUES('Základy programování',4, 1, 1, 50);
+INSERT INTO predmet(nazev,  id_cvicici, id_prednasejici, id_garant, kapacita) VALUES('PrĂˇvnĂ­ minimum',5, 1, 1, 40);
+INSERT INTO predmet(nazev,  id_cvicici, id_prednasejici, id_garant, kapacita) VALUES('ZĂˇklady programovĂˇnĂ­',4, 1, 1, 50);
 
 
 INSERT INTO projekt(nazev, popis, maximum_bodu, minimum_bodu, zadavatel, predmet, datum_prihlaseni, datum_odevzdani) VALUES ('IDS 1', 'http://www.fit.vutbr.cz/IDS/asdfsdf',5 ,3,1, 2,  CURRENT_TIMESTAMP,  CURRENT_TIMESTAMP );
@@ -168,8 +166,8 @@ INSERT INTO resitel(odevzdane_reseni, info_reseni) VALUES('http://www.fit.vutbr.
 INSERT INTO student(id_resitel, jmeno, prijmeni, login, rodne_cislo, titul, password) VALUES(1, 'Milan', 'Hruban', 'xhruba08', 9503294823, '', 'a');
 INSERT INTO student(id_resitel, jmeno, prijmeni, login, rodne_cislo, titul, password) VALUES(2, 'David', 'Hel', 'xhelda00', 9505184920, '', 'a');
 INSERT INTO student(id_resitel, jmeno, prijmeni, login, rodne_cislo, titul, password) VALUES(3, 'Michal',  'Kohout', 'xkohou00', 9503294834,  '', 'a');
-INSERT INTO student(id_resitel, jmeno, prijmeni, login, rodne_cislo, titul, password) VALUES(4, 'Tomáš',  'Svoboda', 'xsvobo95', 9503294812,  '', 'a');
-INSERT INTO student(id_resitel, jmeno, prijmeni, login, rodne_cislo, titul, password) VALUES(5, 'František',  'Veselý', 'xvesel65', 9503294823, '', 'a');
+INSERT INTO student(id_resitel, jmeno, prijmeni, login, rodne_cislo, titul, password) VALUES(4, 'TomĂˇĹˇ',  'Svoboda', 'xsvobo95', 9503294812,  '', 'a');
+INSERT INTO student(id_resitel, jmeno, prijmeni, login, rodne_cislo, titul, password) VALUES(5, 'FrantiĹˇek',  'VeselĂ˝', 'xvesel65', 9503294823, '', 'a');
 
 INSERT INTO tym(id_resitel, nazev_tymu, login_vedouciho) VALUES(6, 'Norway Gnomes', 'xsvobo95');
 INSERT INTO tym(id_resitel, nazev_tymu,  login_vedouciho) VALUES(7, 'Saint-Louis Bishops', 'xvesel65');
@@ -204,8 +202,8 @@ WHERE
   varianta.projekt = projekt.id_projekt and
   informace.pocet_bodu < projekt.minimum_bodu;
 
--- dotaz s predikátem IN s vnořeným selectem (1)
--- POPIS: Vypíše informace o variantách, které spadají pod dany projekt
+-- dotaz s predikĂˇtem IN s vnoĹ™enĂ˝m selectem (1)
+-- POPIS: VypĂ­Ĺˇe informace o variantĂˇch, kterĂ© spadajĂ­ pod dany projekt
 SELECT 
   Va.maximum_resitelu, 
   Va.popis, 
@@ -240,8 +238,8 @@ ORDER BY
   I.pocet_bodu DESC;
 
 
--- dotaz s predikátem EXISTS (1) 
--- POPIS: Vypiše jméno, titul a kontakt vyučujícího, který neučí žádný předmět
+-- dotaz s predikĂˇtem EXISTS (1) 
+-- POPIS: VypiĹˇe jmĂ©no, titul a kontakt vyuÄŤujĂ­cĂ­ho, kterĂ˝ neuÄŤĂ­ ĹľĂˇdnĂ˝ pĹ™edmÄ›t
 SELECT 
   V.jmeno,
   V.titul,
@@ -258,7 +256,7 @@ WHERE NOT EXISTS (
 );
 
 
--- POPIS: Vypíše počet řešitelů, kteří jsou zapsáni na jednotlive varianty (groupby 2/2)
+-- POPIS: VypĂ­Ĺˇe poÄŤet Ĺ™eĹˇitelĹŻ, kteĹ™Ă­ jsou zapsĂˇni na jednotlive varianty (groupby 2/2)
 SELECT 
   R.varianta, 
   count(R.varianta) as "pocet studentu"
@@ -289,6 +287,6 @@ FROM
   predmet P, 
   vyucujici V
 WHERE
-  P.id_vyucujici = V.id_vyucujici and P.nazev='Základy programování';
+  P.id_vyucujici = V.id_vyucujici and P.nazev='ZĂˇklady programovĂˇnĂ­';
 
   */

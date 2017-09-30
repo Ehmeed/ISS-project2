@@ -68,18 +68,17 @@ ul {
 	color: #fff;
 }
 
-.web {
-	position: relative;
-}
-
 .header {
 	background-color:#1aa10c;
 	color: #fff;
-	font-size: 20px;
+	font-size: 23px;
+	font-weight: bold;
+	height: 68px;
+	float: top;
 }
 
 .menu {
-	position: absolute;
+	position: relative;
 	z-index: -1;
 	background: #656665;
 	width: 22em;
@@ -94,7 +93,6 @@ ul {
 
 .web .obsah {
 	position: absolute;
-	right: 0;
 	min-width: 400px;
 	-webkit-transition: all 0.3s ease-out;
 	-moz-transition: all 0.3s ease-out;
