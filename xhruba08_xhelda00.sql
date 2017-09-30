@@ -63,8 +63,7 @@ hodnotici INT
 CREATE TABLE resitel(
 id_resitel INT AUTO_INCREMENT PRIMARY KEY,
 odevzdane_reseni VARCHAR(100),
-info_reseni INT,
-varianta INT
+info_reseni INT
 );
 
 CREATE TABLE student(
@@ -112,7 +111,6 @@ ALTER TABLE student ADD CONSTRAINT FK_student FOREIGN KEY (id_resitel) REFERENCE
 ALTER TABLE tym ADD CONSTRAINT FK_tym FOREIGN KEY (id_resitel) REFERENCES resitel(id_resitel);
 ALTER TABLE resitel ADD CONSTRAINT FK_reseni FOREIGN KEY (info_reseni) REFERENCES informace(id_informace);
 ALTER TABLE varianta ADD CONSTRAINT FK_projekt FOREIGN KEY (projekt) REFERENCES projekt(id_projekt);
-ALTER TABLE resitel ADD CONSTRAINT FK_varianta FOREIGN KEY (varianta) REFERENCES varianta(id_varianta);
 ALTER TABLE clenove_teamu ADD CONSTRAINT FK_team FOREIGN KEY (id_teamu) REFERENCES tym(id_resitel);
 ALTER TABLE zapsany_predmet ADD CONSTRAINT FK_login FOREIGN KEY (login) REFERENCES student(login);
 ALTER TABLE zapsany_predmet ADD CONSTRAINT FK_id_predmet FOREIGN KEY (id_predmet) REFERENCES predmet(id_predmet);
@@ -156,16 +154,16 @@ INSERT INTO informace(pocet_bodu, reseni, datum_hodnoceni, hodnotici) VALUES(4, 
 INSERT INTO informace(pocet_bodu, reseni, datum_hodnoceni, hodnotici) VALUES(0, 'http://www.fit.vutbr.cz/IDS/aasdsdf', CURRENT_TIMESTAMP, 3);
 INSERT INTO informace(pocet_bodu, reseni, datum_hodnoceni, hodnotici) VALUES(3, 'http://www.fit.vutbr.cz/IDS/aasdsdf', CURRENT_TIMESTAMP, 2);
 
-INSERT INTO resitel(odevzdane_reseni, info_reseni, varianta) VALUES('http://www.fit.vutbr.cz/IDS/fgsdsdf',1,1);
-INSERT INTO resitel(odevzdane_reseni, info_reseni, varianta) VALUES('http://www.fit.vutbr.cz/IDS/wqerdsdf',2,1);
-INSERT INTO resitel(odevzdane_reseni, info_reseni, varianta) VALUES('http://www.fit.vutbr.cz/IDS/sdfsdfdf',3,1);
-INSERT INTO resitel(odevzdane_reseni, info_reseni, varianta) VALUES('http://www.fit.vutbr.cz/IDS/bbbbsdf',4,1);
-INSERT INTO resitel(odevzdane_reseni, info_reseni, varianta) VALUES('http://www.fit.vutbr.cz/IDS/asdassdf',5,2);
-INSERT INTO resitel(odevzdane_reseni, info_reseni, varianta) VALUES('http://www.fit.vutbr.cz/IDS/fgsdsdf',6,2);
-INSERT INTO resitel(odevzdane_reseni, info_reseni, varianta) VALUES('http://www.fit.vutbr.cz/IDS/wqerdsdf',7,2);
-INSERT INTO resitel(odevzdane_reseni, info_reseni, varianta) VALUES('http://www.fit.vutbr.cz/IDS/sdfsdfdf',8,2);
-INSERT INTO resitel(odevzdane_reseni, info_reseni, varianta) VALUES('http://www.fit.vutbr.cz/IDS/bbbbsdf',9,2);
-INSERT INTO resitel(odevzdane_reseni, info_reseni, varianta) VALUES('http://www.fit.vutbr.cz/IDS/asdassdf',10,2);
+INSERT INTO resitel(odevzdane_reseni, info_reseni) VALUES('http://www.fit.vutbr.cz/IDS/fgsdsdf',1);
+INSERT INTO resitel(odevzdane_reseni, info_reseni) VALUES('http://www.fit.vutbr.cz/IDS/wqerdsdf',2);
+INSERT INTO resitel(odevzdane_reseni, info_reseni) VALUES('http://www.fit.vutbr.cz/IDS/sdfsdfdf',3);
+INSERT INTO resitel(odevzdane_reseni, info_reseni) VALUES('http://www.fit.vutbr.cz/IDS/bbbbsdf',4);
+INSERT INTO resitel(odevzdane_reseni, info_reseni) VALUES('http://www.fit.vutbr.cz/IDS/asdassdf',5);
+INSERT INTO resitel(odevzdane_reseni, info_reseni) VALUES('http://www.fit.vutbr.cz/IDS/fgsdsdf',6);
+INSERT INTO resitel(odevzdane_reseni, info_reseni) VALUES('http://www.fit.vutbr.cz/IDS/wqerdsdf',7);
+INSERT INTO resitel(odevzdane_reseni, info_reseni) VALUES('http://www.fit.vutbr.cz/IDS/sdfsdfdf',8);
+INSERT INTO resitel(odevzdane_reseni, info_reseni) VALUES('http://www.fit.vutbr.cz/IDS/bbbbsdf',9);
+INSERT INTO resitel(odevzdane_reseni, info_reseni) VALUES('http://www.fit.vutbr.cz/IDS/asdassdf',10);
 
 INSERT INTO student(id_resitel, jmeno, prijmeni, login, rodne_cislo, titul, password) VALUES(1, 'Milan', 'Hruban', 'xhruba08', 9503294823, '', 'a');
 INSERT INTO student(id_resitel, jmeno, prijmeni, login, rodne_cislo, titul, password) VALUES(2, 'David', 'Hel', 'xhelda00', 9505184920, '', 'a');
@@ -183,6 +181,9 @@ INSERT INTO tym(id_resitel, nazev_tymu,  login_vedouciho) VALUES(10, 'New York K
 INSERT INTO zapsany_predmet(login, id_predmet) VALUES("xhruba08", 1);
 INSERT INTO zapsany_predmet(login, id_predmet) VALUES("xhruba08", 2);
 INSERT INTO zapsany_predmet(login, id_predmet) VALUES("xhruba08", 4);
+
+
+INSERT INTO prihlasena_varianta(id_resitel, id_varianta) VALUES (1, 1);
 
 
 -- SELECT QUERIES

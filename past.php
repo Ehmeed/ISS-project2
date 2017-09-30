@@ -54,7 +54,7 @@
         <div class="vnitrni_obsah">
             <h2>Minulé projekty</h2>
                 <?php
-                //TODO DATE
+                //TODO DATE, TEAM PROJECT
                 $date = date("Y-m-d h:i:s");
                 $login = $_SESSION['login'];
                 $query = "SELECT projekt.nazev, informace.pocet_bodu, projekt.maximum_bodu, vyucujici.jmeno FROM student, projekt, varianta, prihlasena_varianta, informace, resitel, vyucujici WHERE student.login = '$login' AND student.id_resitel = prihlasena_varianta.id_resitel AND prihlasena_varianta.id_varianta = varianta.id_varianta AND projekt.id_projekt = varianta.projekt AND student.id_resitel = resitel.id_resitel AND resitel.info_reseni = informace.id_informace AND informace.hodnotici = vyucujici.id_vyucujici
