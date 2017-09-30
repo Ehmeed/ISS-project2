@@ -10,15 +10,15 @@ drop TABLE varianta;
 drop TABLE vyucujici;
 drop table zapsany_predmet;
 drop table clenove_teamu;
+drop table prihlasena_varianta;
 
 
 CREATE TABLE predmet(
 id_predmet INT AUTO_INCREMENT PRIMARY KEY,
 nazev VARCHAR(50) NOT NULL,
-id_vyucujici INT NOT NULL,
-cvicici VARCHAR(50),
-prednasejici VARCHAR(50),
-garant VARCHAR(50) NOT NULL,
+id_cvicici INT,
+id_prednasejici INT,
+id_garant INT NOT NULL,
 kapacita INT NOT NULL
 );
 
@@ -40,7 +40,7 @@ minimum_bodu INT NOT NULL,
 zadavatel INT,
 predmet INT NOT NULL,
 datum_odevzdani TIMESTAMP,
-datum_prihlaseni TIMESTAMP,
+datum_prihlaseni TIMESTAMP
 );
 
 CREATE TABLE varianta (
@@ -94,11 +94,16 @@ login VARCHAR(8) NOT NULL,
 id_predmet INT NOT NULL
 );
 
-//student varinta
+CREATE TABLE prihlasena_varianta(
+id_resitel INT NOT NULL,
+id_varianta INT NOT NULL
+);
 
 -- nastaveni cizich klicu
 
-ALTER TABLE predmet ADD CONSTRAINT FK_vyucujici FOREIGN KEY (id_vyucujici) REFERENCES vyucujici(id_vyucujici);
+ALTER TABLE predmet ADD CONSTRAINT FK_prednasejici FOREIGN KEY (id_prednasejici) REFERENCES vyucujici(id_vyucujici);
+ALTER TABLE predmet ADD CONSTRAINT FK_cvicici FOREIGN KEY (id_cvicici) REFERENCES vyucujici(id_vyucujici);
+ALTER TABLE predmet ADD CONSTRAINT FK_garant FOREIGN KEY (id_garant) REFERENCES vyucujici(id_vyucujici);
 ALTER TABLE projekt ADD CONSTRAINT FK_zadavatel FOREIGN KEY (zadavatel) REFERENCES vyucujici(id_vyucujici);
 ALTER TABLE projekt ADD CONSTRAINT FK_predmet FOREIGN KEY (predmet) REFERENCES predmet(id_predmet);
 ALTER TABLE varianta ADD CONSTRAINT FK_vedouci FOREIGN KEY (vedouci) REFERENCES vyucujici(id_vyucujici);
@@ -111,6 +116,8 @@ ALTER TABLE resitel ADD CONSTRAINT FK_varianta FOREIGN KEY (varianta) REFERENCES
 ALTER TABLE clenove_teamu ADD CONSTRAINT FK_team FOREIGN KEY (id_teamu) REFERENCES tym(id_resitel);
 ALTER TABLE zapsany_predmet ADD CONSTRAINT FK_login FOREIGN KEY (login) REFERENCES student(login);
 ALTER TABLE zapsany_predmet ADD CONSTRAINT FK_id_predmet FOREIGN KEY (id_predmet) REFERENCES predmet(id_predmet);
+ALTER TABLE prihlasena_varianta ADD CONSTRAINT FK_id_resitel FOREIGN KEY (id_resitel) REFERENCES resitel(id_resitel);
+ALTER TABLE prihlasena_varianta ADD CONSTRAINT FK_id_varianta FOREIGN KEY (id_varianta) REFERENCES varianta(id_varianta);
 
 
 
@@ -120,18 +127,18 @@ INSERT INTO vyucujici(jmeno,titul,kontakt) VALUES('Hikaru Nakamura','',123123123
 INSERT INTO vyucujici(jmeno,titul,kontakt) VALUES('Boris Spasky','',123131233);
 INSERT INTO vyucujici(jmeno,titul,kontakt) VALUES('Pavel Eljanov','',123456787);
 
-INSERT INTO predmet(nazev, id_vyucujici, cvicici, prednasejici, garant, kapacita) VALUES('Databázové systémy',2,'Anatoly Karpov','Bobby Fisher','Mikhail Tal', 100);
-INSERT INTO predmet(nazev, id_vyucujici, cvicici, prednasejici, garant, kapacita) VALUES('Matematika 1',2,'Wesley So','Fabiano Caruana','Vladimir Kramnik', 20);
-INSERT INTO predmet(nazev, id_vyucujici, cvicici, prednasejici, garant, kapacita) VALUES('Fyzika 3',3,'Hikaru Nakamura','Viswanathan Anand','Sergey Karjakin', 30);
-INSERT INTO predmet(nazev, id_vyucujici, cvicici, prednasejici, garant, kapacita) VALUES('Právní minimum',5,'Shakhiyar Mamedyarov','Anish Giri','Michael Adams', 40);
-INSERT INTO predmet(nazev, id_vyucujici, cvicici, prednasejici, garant, kapacita) VALUES('Základy programování',4,'Pavel Eljanov','Alexander Grischuk','Yangyi Yu', 50);
+INSERT INTO predmet(nazev,  id_cvicici, id_prednasejici, id_garant, kapacita) VALUES('Databázové systémy',2, 1, 1, 100);
+INSERT INTO predmet(nazev,  id_cvicici, id_prednasejici, id_garant, kapacita) VALUES('Matematika 1',2,  1, 1, 20);
+INSERT INTO predmet(nazev,  id_cvicici, id_prednasejici, id_garant, kapacita) VALUES('Fyzika 3',3,1,  1, 30);
+INSERT INTO predmet(nazev,  id_cvicici, id_prednasejici, id_garant, kapacita) VALUES('Právní minimum',5, 1, 1, 40);
+INSERT INTO predmet(nazev,  id_cvicici, id_prednasejici, id_garant, kapacita) VALUES('Základy programování',4, 1, 1, 50);
 
 
-INSERT INTO projekt(nazev, popis, maximum_bodu, minimum_bodu, zadavatel, predmet, datum_prihlaseni, datum_odevzdani) VALUES ('IDS 1', 'http://www.fit.vutbr.cz/IDS/asdfsdf',5 ,3,1, 2, , CURRENT_TIMESTAMP, , CURRENT_TIMESTAMP );
-INSERT INTO projekt(nazev, popis, maximum_bodu, minimum_bodu, zadavatel, predmet, datum_prihlaseni, datum_odevzdani) VALUES ('IDS 2', 'http://www.fit.vutbr.cz/IDS/ssgfbsdf',5 ,0,2, 1, CURRENT_TIMESTAMP, , CURRENT_TIMESTAMP );
-INSERT INTO projekt(nazev, popis, maximum_bodu, minimum_bodu, zadavatel, predmet, datum_prihlaseni, datum_odevzdani) VALUES ('IDS 3', 'http://www.fit.vutbr.cz/IDS/fgfgfsdf',5 ,0,3, 2, CURRENT_TIMESTAMP, , CURRENT_TIMESTAMP );
-INSERT INTO projekt(nazev, popis, maximum_bodu, minimum_bodu, zadavatel, predmet, datum_prihlaseni, datum_odevzdani) VALUES ('IDS 4', 'http://www.fit.vutbr.cz/IDS/asghghgf',5 ,0,1, 3, CURRENT_TIMESTAMP, , CURRENT_TIMESTAMP );
-INSERT INTO projekt(nazev, popis, maximum_bodu, minimum_bodu, zadavatel, predmet, datum_prihlaseni, datum_odevzdani) VALUES ('IDS 5', 'http://www.fit.vutbr.cz/IDS/aasddkld',19 ,0,5, 4, CURRENT_TIMESTAMP, , CURRENT_TIMESTAMP );
+INSERT INTO projekt(nazev, popis, maximum_bodu, minimum_bodu, zadavatel, predmet, datum_prihlaseni, datum_odevzdani) VALUES ('IDS 1', 'http://www.fit.vutbr.cz/IDS/asdfsdf',5 ,3,1, 2,  CURRENT_TIMESTAMP,  CURRENT_TIMESTAMP );
+INSERT INTO projekt(nazev, popis, maximum_bodu, minimum_bodu, zadavatel, predmet, datum_prihlaseni, datum_odevzdani) VALUES ('IDS 2', 'http://www.fit.vutbr.cz/IDS/ssgfbsdf',5 ,0,2, 1, CURRENT_TIMESTAMP,  CURRENT_TIMESTAMP );
+INSERT INTO projekt(nazev, popis, maximum_bodu, minimum_bodu, zadavatel, predmet, datum_prihlaseni, datum_odevzdani) VALUES ('IDS 3', 'http://www.fit.vutbr.cz/IDS/fgfgfsdf',5 ,0,3, 2, CURRENT_TIMESTAMP,  CURRENT_TIMESTAMP );
+INSERT INTO projekt(nazev, popis, maximum_bodu, minimum_bodu, zadavatel, predmet, datum_prihlaseni, datum_odevzdani) VALUES ('IDS 4', 'http://www.fit.vutbr.cz/IDS/asghghgf',5 ,0,1, 3, CURRENT_TIMESTAMP,  CURRENT_TIMESTAMP );
+INSERT INTO projekt(nazev, popis, maximum_bodu, minimum_bodu, zadavatel, predmet, datum_prihlaseni, datum_odevzdani) VALUES ('IDS 5', 'http://www.fit.vutbr.cz/IDS/aasddkld',19 ,0,5, 4, CURRENT_TIMESTAMP,  CURRENT_TIMESTAMP );
 
 INSERT INTO varianta(maximum_resitelu, popis, studentu_v_tymu, vedouci, projekt) VALUES(100,'http://www.fit.vutbr.cz/IDS/aasdsdf',2, 2,1);
 INSERT INTO varianta(maximum_resitelu, popis, studentu_v_tymu, vedouci, projekt) VALUES(56,'http://www.fit.vutbr.cz/IDS/agffgsdf',3, 1,1);

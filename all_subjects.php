@@ -53,10 +53,11 @@
         <div class="vnitrni_obsah">
             <h2>Registrace předmětů</h2>
             <?php
-            $query = "SELECT * FROM predmet";
+            $query = "SELECT * FROM predmet, vyucujici WHERE predmet.id_garant = vyucujici.id_vyucujici";
             $data = mysqli_query($conn, $query) or die("Cannot access database.").mysqli_error($conn);
             while($data_array = mysqli_fetch_array($data, MYSQLI_ASSOC)){
-                echo $data_array['nazev'];
+                echo "{$data_array['nazev']}". " ". "{$data_array['jmeno']}";
+                //    NAZEV PREDMETU                  CELE JMENO GARANTA
                 ?>
                 <br>
                 <?php
