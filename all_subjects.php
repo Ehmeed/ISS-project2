@@ -1,5 +1,6 @@
 <?php
     session_start();
+    require_once 'check_login.php';
     require_once 'dbconnect.php';
 ?>
 
@@ -51,7 +52,7 @@
     <div class="obsah">
 
         <div class="vnitrni_obsah">
-            <h2>Registrace předmětů</h2>
+            <h2>Všechny předměty</h2>
             <?php
             $query = "SELECT * FROM predmet, vyucujici WHERE predmet.id_garant = vyucujici.id_vyucujici";
             $data = mysqli_query($conn, $query) or die("Cannot access database.").mysqli_error($conn);

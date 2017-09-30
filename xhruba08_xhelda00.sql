@@ -120,7 +120,6 @@ ALTER TABLE prihlasena_varianta ADD CONSTRAINT FK_id_resitel FOREIGN KEY (id_res
 ALTER TABLE prihlasena_varianta ADD CONSTRAINT FK_id_varianta FOREIGN KEY (id_varianta) REFERENCES varianta(id_varianta);
 
 
-
 INSERT INTO vyucujici(jmeno,titul,kontakt) VALUES('Gary Kasparov','',123456798);
 INSERT INTO vyucujici(jmeno,titul,kontakt) VALUES('Magnus Carlsen','',123123123);
 INSERT INTO vyucujici(jmeno,titul,kontakt) VALUES('Hikaru Nakamura','',123123123);
@@ -179,6 +178,11 @@ INSERT INTO tym(id_resitel, nazev_tymu,  login_vedouciho) VALUES(7, 'Saint-Louis
 INSERT INTO tym(id_resitel, nazev_tymu,  login_vedouciho) VALUES(8, 'ChessBrahs',  'xhelda00');
 INSERT INTO tym(id_resitel, nazev_tymu,  login_vedouciho) VALUES(9, 'Colombus Cardinals',  'xkurat01');
 INSERT INTO tym(id_resitel, nazev_tymu,  login_vedouciho) VALUES(10, 'New York Knights', 'xplasi09');
+
+
+INSERT INTO zapsany_predmet(login, id_predmet) VALUES("xhruba08", 1);
+INSERT INTO zapsany_predmet(login, id_predmet) VALUES("xhruba08", 2);
+INSERT INTO zapsany_predmet(login, id_predmet) VALUES("xhruba08", 4);
 
 
 -- SELECT QUERIES

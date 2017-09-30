@@ -1,5 +1,7 @@
 <?php
-	session_start();
+    session_start();
+    require_once 'check_login.php';
+    require_once 'dbconnect.php';
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +42,7 @@
             </li>
 
             <li>
-                <div class="link"><h4>ODHLÁSIT SE</h4><hr></div>
+                <div class="link"><a href="logout.php" class="plain"><h4>ODHLÁSIT SE</h4><hr></a></div>
             </li>
 
         </ul>
@@ -51,7 +53,18 @@
 
         <div class="vnitrni_obsah">
             <h2>Zapsané předměty</h2>
+                  <?php
+                $query = "SELECT nazev FROM predmet, student, zapsany_predmet WHERE student.login = 'xhruba08' AND student.login = zapsany_predmet.login AND zapsany_predmet.id_predmet = predmet.id_predmet";
+                $data = mysqli_query($conn, $query) or die("Cannot access database.").mysqli_error($conn);
+                while($data_array = mysqli_fetch_array($data, MYSQLI_ASSOC)){
+                    echo "{$data_array['nazev']}";
+                    // NAZEV PREDMETU   TODO - JESTE NECO NEBO NE?
+                    ?>
+                    <br>
+                    <?php
+                }
 
+                ?>
         </div>
 
     </div>
