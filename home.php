@@ -41,7 +41,7 @@
             </li>
 
             <li>
-                <div class="link"><h4>ODHLÁSIT SE</h4><hr></div>
+                <div class="link"><a href="logout.php" class="plain"><h4>ODHLĂSIT SE</h4><hr></a></div>
             </li>
 
         </ul>

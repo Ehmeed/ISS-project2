@@ -13,7 +13,7 @@
 	$password = '';
 
 	// check is user already logged in, redirect
-	if(isset($_SESSION['login'])==''){
+	if(isset($_SESSION['login'])){
 		header("Location: home.php");
         exit;
 	}
