@@ -1,6 +1,8 @@
 ﻿<?php
 	session_start();
+    require_once 'check_login.php';
     require_once 'dbconnect.php';
+
 ?>
 
 <!DOCTYPE html>
