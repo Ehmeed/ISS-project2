@@ -90,6 +90,7 @@ CREATE TABLE zapsany_predmet(
 login VARCHAR(8) NOT NULL,
 id_predmet INT NOT NULL
 );
+ALTER TABLE zapsany_predmet ADD UNIQUE (login, id_predmet);
 
 CREATE TABLE prihlasena_varianta(
 id_resitel INT NOT NULL,
