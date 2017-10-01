@@ -23,4 +23,8 @@
         $data_array = mysqli_fetch_array($data, MYSQLI_ASSOC);
         return $data_array;
 	}
+
+	function dbqueryinsert($query, $conn) {
+    	$data = mysqli_query($conn, $query);    
+	}
 	
