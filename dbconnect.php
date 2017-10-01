@@ -15,7 +15,7 @@
 	if ( !$conn ) {
 		die("Error establishing database connection");
 	}
-
+	mysqli_query($conn, "set names 'utf8'");
 
 
 	function dbquery($query, $conn) {

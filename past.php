@@ -2,11 +2,11 @@
 session_start();
 require_once 'check_login.php';
 require_once 'dbconnect.php';
-$title = 'P�edchoz� projekty - Fakultní informační systém';
+$title = 'Předchozí projekty - Fakultní informační systém';
 include("template/header.php");
 ?>
 
-            <h2>P�edchoz� projekty</h2>
+            <h2>Předchozí projekty</h2>
                 <?php
                 //TODO DATE, TEAM PROJECT
                 $date = date("Y-m-d h:i:s");

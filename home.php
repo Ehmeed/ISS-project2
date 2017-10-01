@@ -2,7 +2,7 @@
     session_start();
     require_once 'check_login.php';
     require_once 'dbconnect.php';
-    $title = '�vod - Fakultní informační systém';
+    $title = 'Úvod - Fakultní informační systém';
     include("template/header.php"); 
 ?>
 
