@@ -10,7 +10,7 @@ include("template/header.php");
               
             <table>
                 <tr bgcolor="#3d9615"><font color="#FFF">
-                    <td><font color="#FFF"><b>ZAPSANÉ PØEDMÌTY</b></font></td> 
+                    <td><font color="#FFF"><b>ZAPSANÃ‰ PÅ˜EDMÄšTY</b></font></td> 
     			</tr>
                         
                         <?php

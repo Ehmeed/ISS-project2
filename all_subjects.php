@@ -27,8 +27,8 @@ if(isset($_POST['submit'])){
             <table>
 
                 <tr bgcolor="#3d9615"><font color="#FFF">
-                    <td><font color="#FFF"><b>NAZEV PREDMETU</b></font></td> 
-        			<td><font color="#FFF"><b>GARANT PREDMETU</b></font></td>
+                    <td><font color="#FFF"><b>NÁZEV PŘEDMĚTU</b></font></td> 
+        			<td><font color="#FFF"><b>GARANT PŘEDMĚTU</b></font></td>
     			</tr>
                    
                     <?php
