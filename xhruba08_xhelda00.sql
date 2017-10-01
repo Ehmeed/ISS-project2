@@ -97,6 +97,11 @@ id_resitel INT NOT NULL,
 id_varianta INT NOT NULL
 );
 
+CREATE TABLE admin(
+login VARCHAR(20) PRIMARY KEY,
+password VARCHAR(255)
+);
+
 -- nastaveni cizich klicu
 
 ALTER TABLE predmet ADD CONSTRAINT FK_prednasejici FOREIGN KEY (id_prednasejici) REFERENCES vyucujici(id_vyucujici);
