@@ -4,13 +4,24 @@ require_once 'check_login.php';
 require_once 'dbconnect.php';
 $title = 'Všechny předměty - Fakultní informační systém';
 include("template/header.php");
+
+$query = "SELECT * FROM predmet, vyucujici WHERE predmet.id_garant = vyucujici.id_vyucujici";
+
+if(isset($_POST['submit'])){
+    $expression = htmlspecialchars(strip_tags(trim($_POST['search'])));
+    if(empty($expression)){
+        $expression = '%';
+    }
+    $query = "SELECT * FROM predmet, vyucujici WHERE predmet.id_garant = vyucujici.id_vyucujici AND LOWER(predmet.nazev) LIKE LOWER('%$expression%')";
+}
 ?>
 
             <h2>Všechny předměty</h2>
            
-            <form><br>
-               <input type="submit" value="Vyhledat" size="30">
-               <input type="text">
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off"><br>
+               <input type="text" name="search">
+               <input type="submit" value="Vyhledat" size="30" name="submit">
+               
             </form> <br>
             
             <table>
@@ -21,7 +32,7 @@ include("template/header.php");
     			</tr>
                    
                     <?php
-                    $query = "SELECT * FROM predmet, vyucujici WHERE predmet.id_garant = vyucujici.id_vyucujici";
+                    
                     $data = mysqli_query($conn, $query) or die("Cannot access database.").mysqli_error($conn);
                     while($data_array = mysqli_fetch_array($data, MYSQLI_ASSOC)){?>
                     
