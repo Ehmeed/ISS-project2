@@ -11,6 +11,7 @@ $data = mysqli_query($conn, $query) or die("Cannot access database.").mysqli_err
 while($data_array = mysqli_fetch_array($data, MYSQLI_ASSOC)){
   $subject = $data_array['id_predmet'];
   if (isset($_POST[$subject])){     
+    //TODO check jestli predmet neni full
     dbqueryinsert("INSERT INTO zapsany_predmet(login, id_predmet) VALUES('$login', {$data_array['id_predmet']})", $conn);    
   }
 }
