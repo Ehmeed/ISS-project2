@@ -17,7 +17,7 @@
 					<h4>*Rodné číslo:</h4>
 						<input id="box" type="text" name="rodne_cislo">
 					<h4>*Heslo:</h4>
-						<input id="box" type="text" name="heslo">
+						<input id="box" type="password" name="heslo">
 					<h4>Kontakt:</h4>
 						<input id="box" type="text" name="kontakt" value="+420">
 					<h4>Titul:</h4>

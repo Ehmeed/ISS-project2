@@ -13,11 +13,17 @@
 					<h4>*Název:</h4>
 						<input id="box" type="text" name="nazev">
 					<h4>*Garant:</h4>
-						<input id="box" type="text" name="garant">
-					<h4>Přednášející:</h4>
-						<input id="box" type="text" name="prednasejici">
-					<h4>Cvičící:</h4>
-						<input id="box" type="text" name="cvicici">
+						 <select id="box" name="titul">
+						  <option value=""></option>
+						</select> 
+					<h4>*Přednášející:</h4>
+						 <select id="box" name="titul">
+						  <option value=""></option>
+						</select> 
+					<h4>*Cvičící:</h4>
+						 <select id="box" name="titul">
+						  <option value=""></option>
+						</select> 
 					<h4>*Kapacita:</h4>
 						<input id="box" type="text" name="kapacita">
 					<br><br>

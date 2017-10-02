@@ -26,7 +26,7 @@
 					  <option value="PhD">PhD</option>
 					</select> 
 				<h4>*Heslo:</h4>
-					<input id="box" type="text" name="heslo">
+					<input id="box" type="password" name="heslo">
 				<br><br>
 					<font color="#c60614">* položky označené hvězdičkou jsou povinné</font>
 				<br><br>
