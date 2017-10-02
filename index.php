@@ -40,9 +40,29 @@
 
 				if(mysqli_num_rows($data) == 1 && $data_array['password'] == $password){
 					$_SESSION['login'] = $login;
+					$_SESSION['power'] = "student";
 					header("Location: home.php");
-				} else {					
-					$wrongLogin = true;
+				} else {
+					$query = "SELECT login, password FROM vyucujici WHERE login='$login'";
+					$data = mysqli_query($conn, $query) or die("Cannot access database.").mysqli_error($conn);
+					$data_array = mysqli_fetch_array($data, MYSQLI_ASSOC);		
+					if(mysqli_num_rows($data) == 1 && $data_array['password'] == $password){
+						$_SESSION['login'] = $login;
+						$_SESSION['power'] = "teacher";
+						header("Location: home.php"); // TODO REDIRECT TO TEACHER SITE
+					} else {
+						$query = "SELECT login, password FROM admin WHERE login='$login'";
+						$data = mysqli_query($conn, $query) or die("Cannot access database.").mysqli_error($conn);
+						$data_array = mysqli_fetch_array($data, MYSQLI_ASSOC);
+						if(mysqli_num_rows($data) == 1 && $data_array['password'] == $password){
+							$_SESSION['login'] = $login;
+							$_SESSION['power'] = "admin";
+							header("Location: admin/home.php"); // TODO REDIRECT TO TEACHER SITE
+						} else {
+							$wrongLogin = true;
+						}		
+					}					
+					
 				}
 
 			}

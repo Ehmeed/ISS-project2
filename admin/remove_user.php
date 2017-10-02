@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once '../check_login.php';
+    require_once 'check_login_admin.php';
     require_once '../dbconnect.php';
     $title = 'Odebrat uživatele - Fakultní informační systém';
     include("admin_header.php"); 

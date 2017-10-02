@@ -9,6 +9,7 @@ drop TABLE vyucujici;
 drop table zapsany_predmet;
 drop table clenove_teamu;
 drop table prihlasena_varianta;
+drop table admin;
 
 
 CREATE TABLE predmet(
@@ -122,11 +123,11 @@ ALTER TABLE prihlasena_varianta ADD CONSTRAINT FK_id_resitel FOREIGN KEY (id_res
 ALTER TABLE prihlasena_varianta ADD CONSTRAINT FK_id_varianta FOREIGN KEY (id_varianta) REFERENCES varianta(id_varianta);
 
 
-INSERT INTO vyucujici(jmeno,titul,kontakt) VALUES('Gary Kasparov','',123456798);
-INSERT INTO vyucujici(jmeno,titul,kontakt) VALUES('Magnus Carlsen','',123123123);
-INSERT INTO vyucujici(jmeno,titul,kontakt) VALUES('Hikaru Nakamura','',123123123);
-INSERT INTO vyucujici(jmeno,titul,kontakt) VALUES('Boris Spasky','',123131233);
-INSERT INTO vyucujici(jmeno,titul,kontakt) VALUES('Pavel Eljanov','',123456787);
+INSERT INTO vyucujici(jmeno,titul,kontakt, password, login) VALUES('Gary Kasparov','',123456798, "vyucujici", "xkaspa00");
+INSERT INTO vyucujici(jmeno,titul,kontakt, password, login) VALUES('Magnus Carlsen','',123123123, "vyucujici", "xkasaa00");
+INSERT INTO vyucujici(jmeno,titul,kontakt, password, login) VALUES('Hikaru Nakamura','',123123123, "vyucujici", "xksdpa00");
+INSERT INTO vyucujici(jmeno,titul,kontakt, password, login) VALUES('Boris Spasky','',123131233, "vyucujici", "xkassd20");
+INSERT INTO vyucujici(jmeno,titul,kontakt, password, login) VALUES('Pavel Eljanov','',123456787, "vyucujici", "xasdpa00");
 
 INSERT INTO predmet(nazev,  id_cvicici, id_prednasejici, id_garant, kapacita) VALUES('DatabĂˇzovĂ© systĂ©my',2, 1, 1, 100);
 INSERT INTO predmet(nazev,  id_cvicici, id_prednasejici, id_garant, kapacita) VALUES('Matematika 1',2,  1, 1, 20);
@@ -188,6 +189,7 @@ INSERT INTO zapsany_predmet(login, id_predmet) VALUES("xhruba08", 4);
 
 
 INSERT INTO prihlasena_varianta(id_resitel, id_varianta) VALUES (1, 1);
+INSERT into admin(login, password) VALUES("admin", "admin");
 
 
 -- SELECT QUERIES

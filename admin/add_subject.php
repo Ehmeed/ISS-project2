@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once '../check_login.php';
+    require_once 'check_login_admin.php';
     require_once '../dbconnect.php';
     $title = 'Přidat předmět - Administrace - Fakultní informační systém';
     include("admin_header.php"); 
@@ -14,9 +14,9 @@
 						<input id="box" type="text" name="nazev">
 					<h4>*Garant:</h4>
 						<input id="box" type="text" name="garant">
-					<h4>*Přednášející:</h4>
+					<h4>Přednášející:</h4>
 						<input id="box" type="text" name="prednasejici">
-					<h4>*Cvičící:</h4>
+					<h4>Cvičící:</h4>
 						<input id="box" type="text" name="cvicici">
 					<h4>*Kapacita:</h4>
 						<input id="box" type="text" name="kapacita">
