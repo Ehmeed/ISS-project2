@@ -123,11 +123,11 @@ ALTER TABLE prihlasena_varianta ADD CONSTRAINT FK_id_resitel FOREIGN KEY (id_res
 ALTER TABLE prihlasena_varianta ADD CONSTRAINT FK_id_varianta FOREIGN KEY (id_varianta) REFERENCES varianta(id_varianta);
 
 
-INSERT INTO vyucujici(jmeno,titul,kontakt, password, login) VALUES('Gary Kasparov','',123456798, "vyucujici", "xkaspa00");
-INSERT INTO vyucujici(jmeno,titul,kontakt, password, login) VALUES('Magnus Carlsen','',123123123, "vyucujici", "xkasaa00");
-INSERT INTO vyucujici(jmeno,titul,kontakt, password, login) VALUES('Hikaru Nakamura','',123123123, "vyucujici", "xksdpa00");
-INSERT INTO vyucujici(jmeno,titul,kontakt, password, login) VALUES('Boris Spasky','',123131233, "vyucujici", "xkassd20");
-INSERT INTO vyucujici(jmeno,titul,kontakt, password, login) VALUES('Pavel Eljanov','',123456787, "vyucujici", "xasdpa00");
+INSERT INTO vyucujici(jmeno,titul,kontakt, password, login) VALUES('Gary Kasparov','',123456798, "vyucujici", "ykaspa00");
+INSERT INTO vyucujici(jmeno,titul,kontakt, password, login) VALUES('Magnus Carlsen','',123123123, "vyucujici", "ykasaa00");
+INSERT INTO vyucujici(jmeno,titul,kontakt, password, login) VALUES('Hikaru Nakamura','',123123123, "vyucujici", "yksdpa00");
+INSERT INTO vyucujici(jmeno,titul,kontakt, password, login) VALUES('Boris Spasky','',123131233, "vyucujici", "ykassd20");
+INSERT INTO vyucujici(jmeno,titul,kontakt, password, login) VALUES('Pavel Eljanov','',123456787, "vyucujici", "yasdpa00");
 
 INSERT INTO predmet(nazev,  id_cvicici, id_prednasejici, id_garant, kapacita) VALUES('DatabĂˇzovĂ© systĂ©my',2, 1, 1, 100);
 INSERT INTO predmet(nazev,  id_cvicici, id_prednasejici, id_garant, kapacita) VALUES('Matematika 1',2,  1, 1, 20);
