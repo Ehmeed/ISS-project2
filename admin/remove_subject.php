@@ -9,7 +9,10 @@
 <!--Obsah stranky-->          
             <h2>Odebrat předmět</h2>
 
-            
+				<form method="post" action="" autocomplete="off"><br>
+				   <input id="box" type="text" name="search">
+				   <input type="submit" value="Vyhledat předmět" size="30" name="submit">
+				</form>
          
 
 <?php include("admin_footer.php");?>

@@ -19,7 +19,7 @@ if(isset($_POST['submit'])){
             <h2>Všechny předměty</h2>
            
             <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off"><br>
-               <input type="text" name="search">
+               <input id="box" type="text" name="search">
                <input type="submit" value="Vyhledat" size="30" name="submit">
                
             </form> <br>
