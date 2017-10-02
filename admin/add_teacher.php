@@ -10,7 +10,6 @@
     if( isset($_POST['pridat']) ) {
     	$jmeno = htmlspecialchars(strip_tags(trim($_POST['jmeno'])));
     	$prijmeni = htmlspecialchars(strip_tags(trim($_POST['prijmeni'])));
-    	$rc = htmlspecialchars(strip_tags(trim($_POST['rodne_cislo'])));
     	$heslo = htmlspecialchars(strip_tags(trim($_POST['heslo'])));
     	$kontakt = htmlspecialchars(strip_tags(trim($_POST['kontakt'])));
     	$titul = htmlspecialchars(strip_tags(trim($_POST['titul'])));
@@ -22,14 +21,6 @@
     	}
     	if(empty($prijmeni) or strlen($prijmeni) > 25){
     		$surnameError = "Prijmeni musi mit alespon 1 a mene nez 25 znaku";
-    		$error = true;
-    	}
-    	if(strlen($rc) > 10 or strlen($rc) < 9){
-    		$rcError = "Rodne cislo musi mit 9-10 znaku";
-    		$error = true;
-    	}
-    	if(!is_numeric($rc)){
-    		$rcError = "Rodne cislo musi obsahovat pouze cisla";
     		$error = true;
     	}
     	if(empty($heslo)){
@@ -69,9 +60,7 @@
 					<h4>*Jméno</h4>
 						<input id="box" type="text" name="jmeno">
 					<h4>*Příjmení:</h4>
-						<input id="box" type="text" name="prijmeni">
-					<h4>*Rodné číslo:</h4>
-						<input id="box" type="text" name="rodne_cislo">
+						<input id="box" type="text" name="prijmeni">				
 					<h4>*Heslo:</h4>
 						<input id="box" type="password" name="heslo">
 					<h4>Kontakt:</h4>

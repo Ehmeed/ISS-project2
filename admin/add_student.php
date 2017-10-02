@@ -4,6 +4,18 @@
     require_once '../dbconnect.php';
     $title = 'Přidat studenta - Administrace - Fakultní informační systém';
     include("admin_header.php"); 
+
+
+
+
+    if(strlen($rc) > 10 or strlen($rc) < 9){
+    		$rcError = "Rodne cislo musi mit 9-10 znaku";
+    		$error = true;
+	}
+	if(!is_numeric($rc)){
+		$rcError = "Rodne cislo musi obsahovat pouze cisla";
+		$error = true;
+	}
 ?>
 
         <h2>Přidat studenta</h2>
@@ -14,8 +26,6 @@
 					<input id="box" type="text" name="jmeno">
 				<h4>*Příjmení:</h4>
 					<input id="box" type="text" name="prijemni">
-				<h4>*Login:</h4>
-					<input id="box" type="text" name="login">
 				<h4>*Rodné číslo:</h4>
 					<input id="box" type="text" name="rodne_cislo">
 				<h4>Titul:</h4>
