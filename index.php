@@ -57,7 +57,7 @@
 						if(mysqli_num_rows($data) == 1 && $data_array['password'] == $password){
 							$_SESSION['login'] = $login;
 							$_SESSION['power'] = "admin";
-							header("Location: admin/home.php"); // TODO REDIRECT TO TEACHER SITE
+							header("Location: admin/home.php"); 
 						} else {
 							$wrongLogin = true;
 						}		
