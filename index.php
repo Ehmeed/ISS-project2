@@ -33,7 +33,7 @@
 
 			if(!$error){
 				// check login and password in db
-				//$password = md5($password); //TODO
+				$password = md5($password); //TODO
 				$query = "SELECT id_resitel, login, password FROM student WHERE login='$login'";
 				$data = mysqli_query($conn, $query) or die("Cannot access database.").mysqli_error($conn);
 				$data_array = mysqli_fetch_array($data, MYSQLI_ASSOC);

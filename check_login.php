@@ -4,6 +4,14 @@
         header("Location: index.php");
         exit;
     }
+    if(!isset($_SESSION['power'])){
+        header("Location: index.php");
+        exit;
+    }
+    if($_SESSION['power'] != "student"){
+        header("Location: index.php");
+        exit;
+    }
 
     if(time() - $_SESSION['timestamp'] > 900) { 
     	header("Location: logout.php"); 
