@@ -6,6 +6,15 @@
     include("admin_header.php"); 
 
     $error = false;
+    $nameError = '';
+    $surnameError = '';
+    $hesloError = '';
+    $kontaktError = '';
+
+    $jmeno = '';
+    $prijmeni  = '';
+    $kontakt  = '';
+    $titul  = '';
     
     if( isset($_POST['pridat']) ) {
     	$jmeno = htmlspecialchars(strip_tags(trim($_POST['jmeno'])));
@@ -27,9 +36,15 @@
     		$hesloError = "Zadejte heslo";
     		$error = true;
     	}
-    	if(!is_numeric($kontakt)){
-    		$kontaktError = "Kontakt musi obsahovat pouze cisla";
+    	if(strlen($heslo) < 5){
+    		$hesloError = "Heslo musi mit alespon 5 znaku";
     		$error = true;
+    	}
+    	if(!empty($kontakt)){
+	    	if(!is_numeric($kontakt)){
+	    		$kontaktError = "Kontakt musi obsahovat pouze cisla";
+	    		$error = true;
+	    	}
     	}
 
     	if(!$error){
@@ -49,6 +64,21 @@
     		}
 
     		//6 mistny login, konrola v db zda jiz neexistuje a prirazeni koncoveho cisla
+    		$data_array = dbquery("SELECT login FROM vyucujici WHERE login LIKE '$login%'", $conn);
+    		if($data_array == null){
+    			$poradi = 00;
+    		}else {
+    			$poradi = mysqli_num_rows($data_array) + 1;
+    		}
+    		if(strlen($poradi) == 1){
+    			$poradi = "0" . $poradi;
+    		}
+    		$login = strtolower($login);
+    		$login = $login . $poradi;
+    		$cele_jmeno = $jmeno . " " . $prijmeni;
+    		$heslo = md5($heslo);
+    		//hotovy login, muzeme ulozit zaznam do db
+    		dbqueryinsert("INSERT INTO vyucujici(jmeno,titul,kontakt, password, login) VALUES('$cele_jmeno', '$titul', $kontakt, '$heslo', '$login')",$conn);
     	}
     }  
 ?>
@@ -58,22 +88,26 @@
 			<div class="formular">
 				<form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off"><br>
 					<h4>*Jméno</h4>
-						<input id="box" type="text" name="jmeno">
+						<input id="box" type="text" name="jmeno" value="<?php echo $jmeno; ?>">
+						<br><span class="text-danger"><?php echo $nameError; ?></span>
 					<h4>*Příjmení:</h4>
-						<input id="box" type="text" name="prijmeni">				
+						<input id="box" type="text" name="prijmeni" value="<?php echo $prijmeni; ?>">	
+						<br><span class="text-danger"><?php echo $surnameError; ?></span>			
 					<h4>*Heslo:</h4>
 						<input id="box" type="password" name="heslo">
+						<br><span class="text-danger"><?php echo $hesloError; ?></span>
 					<h4>Kontakt:</h4>
-						<input id="box" type="text" name="kontakt">
+						<input id="box" type="text" name="kontakt"  value="<?php echo $kontakt; ?>">
+						<br><span class="text-danger"><?php echo $kontaktError; ?></span>
 					<h4>Titul:</h4>
 						 <select id="box" name="titul">
-						  <option value="nic"></option>
-						  <option value="Bc">Bc</option>
-						  <option value="Ing">Ing</option>
-						  <option value="PhD">PhD</option>
-						  <option value="doc">doc</option>
-						  <option value="prof">prof</option>
-						  <option value="CSc">CSc</option>
+						  <option value=""></option>
+						  <option value="Bc"  <?php if($titul == "Bc") echo "selected"?>>Bc</option> 
+						  <option value="Ing" <?php if($titul == "Ing") echo "selected"?>>Ing</option>
+						  <option value="PhD" <?php if($titul == "PhD") echo "selected"?>>PhD</option>
+						  <option value="doc" <?php if($titul == "doc") echo "selected"?>>doc</option>
+						  <option value="prof" <?php if($titul == "prof") echo "selected"?>>prof</option>
+						  <option value="CSc" <?php if($titul == "CSc") echo "selected"?>>CSc</option>
 						</select> 
 					<br><br>
 						<font color="#c60614">* položky označené hvězdičkou jsou povinné</font>
