@@ -106,7 +106,8 @@
             <h2>Přidat vyučujícího</h2>
 			
 			<div class="formular">
-				<form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off"><br>
+				<form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off">
+				<br><div class="msg"><?php echo "{$message}";?></div>
 					<h4>*Jméno</h4>
 						<input id="box" type="text" name="jmeno" value="<?php echo $jmeno; ?>">
 						<br><span class="text-danger"><?php echo $nameError; ?></span>
