@@ -51,7 +51,7 @@
 					<h4>*Heslo:</h4>
 						<input id="box" type="password" name="heslo">
 						<br><span class="text-danger"><?php echo $hesloError; ?></span>
-					<br><br>
+					<br>
 						<font color="#c60614">* položky označené hvězdičkou jsou povinné</font>
 					<br><br>
 					
