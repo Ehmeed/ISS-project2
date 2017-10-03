@@ -15,6 +15,8 @@
     $prijmeni  = '';
     $kontakt  = '';
     $titul  = '';
+
+    $message = '';
     
     if( isset($_POST['pridat']) ) {
     	$jmeno = htmlspecialchars(strip_tags(trim($_POST['jmeno'])));
@@ -62,23 +64,41 @@
     		if(strlen($login) < 6){
     			$login = $login . str_repeat("0", 6 - strlen($login));
     		}
-
+    		$login = strtolower($login);
     		//6 mistny login, konrola v db zda jiz neexistuje a prirazeni koncoveho cisla
-    		$data_array = dbquery("SELECT login FROM vyucujici WHERE login LIKE '$login%'", $conn);
+    		
+    		$data = mysqli_query($conn, "SELECT login FROM vyucujici WHERE login LIKE '$login%'") or die("Cannot access database.").mysqli_error($conn);
+    		
+        	$data_array = mysqli_fetch_array($data, MYSQLI_ASSOC);
+
     		if($data_array == null){
     			$poradi = 00;
+    			
     		}else {
-    			$poradi = mysqli_num_rows($data_array) + 1;
+    			$poradi = mysqli_num_rows($data) + 1;
     		}
     		if(strlen($poradi) == 1){
     			$poradi = "0" . $poradi;
     		}
-    		$login = strtolower($login);
+    		
     		$login = $login . $poradi;
     		$cele_jmeno = $jmeno . " " . $prijmeni;
     		$heslo = md5($heslo);
     		//hotovy login, muzeme ulozit zaznam do db
-    		dbqueryinsert("INSERT INTO vyucujici(jmeno,titul,kontakt, password, login) VALUES('$cele_jmeno', '$titul', $kontakt, '$heslo', '$login')",$conn);
+    		if(empty($kontakt)){
+    			$query = "INSERT INTO vyucujici(jmeno,titul, password, login) VALUES('$cele_jmeno', '$titul', '$heslo', '$login')";
+    		}else{
+    			$query = "INSERT INTO vyucujici(jmeno,titul,kontakt, password, login) VALUES('$cele_jmeno', '$titul', $kontakt, '$heslo', '$login')";
+    		}
+    		if( mysqli_query($conn, "$query")){
+	    		$message = 'Uživatel přidán';
+	    		$jmeno = '';
+			    $prijmeni  = '';
+			    $kontakt  = '';
+			    $titul  = '';
+			}else {
+				$message = 'Ups, uživatele se nepodařilo přidat';
+			}
     	}
     }  
 ?>
