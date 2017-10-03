@@ -42,7 +42,8 @@
             <h2>Přidat administrátora</h2>
 			
 			<div class="formular">
-				<form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off"><br>
+				<form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off">
+				<br><div class="msg"><?php echo "{$message}";?></div>
 					<h4>*Login:</h4>
 						<input id="box" type="text" name="login" value="<?php echo $login; ?>">
 						<br><span class="text-danger"><?php echo $loginError; ?></span>

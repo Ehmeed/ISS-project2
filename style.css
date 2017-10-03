@@ -34,6 +34,12 @@ table {
 	background-color: #f5f5f5;
 }
 
+.msg {
+	color: #0c4bff; 
+	font-size: 16px;
+	text-decoration: bold;
+}
+
 input[type=text]:focus {
     background-color: #d8ecd8;
 }

@@ -21,7 +21,8 @@
         <h2>Přidat studenta</h2>
 			
 		<div class="formular">
-			<form action="/action_page.php"><br>
+			<form action="/action_page.php">
+			<br><div class="msg"><?php echo "{$message}";?></div>
 				<h4>*Jméno:</h4>
 					<input id="box" type="text" name="jmeno">
 				<h4>*Příjmení:</h4>
