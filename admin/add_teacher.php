@@ -68,7 +68,7 @@
     		//6 mistny login, konrola v db zda jiz neexistuje a prirazeni koncoveho cisla
     		
     		$data = mysqli_query($conn, "SELECT login FROM vyucujici WHERE login LIKE '$login%'") or die("Cannot access database.").mysqli_error($conn);
-    		
+
         	$data_array = mysqli_fetch_array($data, MYSQLI_ASSOC);
 
     		if($data_array == null){
@@ -91,7 +91,7 @@
     			$query = "INSERT INTO vyucujici(jmeno,titul,kontakt, password, login) VALUES('$cele_jmeno', '$titul', $kontakt, '$heslo', '$login')";
     		}
     		if( mysqli_query($conn, "$query")){
-	    		$message = 'Uživatel přidán';
+	    		$message = 'Uživatel $login přidán';
 	    		$jmeno = '';
 			    $prijmeni  = '';
 			    $kontakt  = '';
