@@ -91,7 +91,7 @@
     			$query = "INSERT INTO vyucujici(jmeno,titul,kontakt, password, login) VALUES('$cele_jmeno', '$titul', $kontakt, '$heslo', '$login')";
     		}
     		if( mysqli_query($conn, "$query")){
-	    		$message = 'Uživatel $login přidán';
+	    		$message = "Uživatel $login přidán";
 	    		$jmeno = '';
 			    $prijmeni  = '';
 			    $kontakt  = '';

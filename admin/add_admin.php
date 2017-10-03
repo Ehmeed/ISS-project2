@@ -31,7 +31,8 @@
     		$heslo = md5($heslo);
 
     		if(mysqli_query($conn, "INSERT into admin(login, password) VALUES('$login', '$heslo')")){
-    			$message = 'Administrátor $login vytvořen.';
+    			$message = "Administrátor $login vytvořen.";
+    			$login = '';
     		} else {
     			$message = 'Administrátora se nepodařilo vytvořit. Jméno je již používané nebo databáze je nedostupná.';
     		}
