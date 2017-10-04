@@ -7,7 +7,8 @@ include("template/header.php");
 ?>
 
             <h2>Zapsané předměty</h2>
-              
+            
+			<div id="table-scroll">			
             <table>
                 <tr bgcolor="#3d9615"><font color="#FFF">
                     <td><font color="#FFF"><b>ZAPSANÉ PŘEDMĚTY</b></font></td> 
@@ -29,6 +30,7 @@ include("template/header.php");
 
                 ?>
                 
-             </table>      
+             </table> 
+			</div>			 
                 
 <?php include("template/footer.php");?>

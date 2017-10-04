@@ -18,7 +18,8 @@ if(isset($_POST['submit'])){
 
             <h2>Všechny předměty</h2>
            
-            <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off"><br>
+			<div id="table-scroll">	
+			<form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off"><br>
                <input id="box" type="text" name="search">
                <input type="submit" value="Vyhledat" size="30" name="submit">
                
@@ -46,6 +47,6 @@ if(isset($_POST['submit'])){
     
                 ?>
             </table>
-            
+            </div>
 
 <?php include("template/footer.php");?>

@@ -82,7 +82,9 @@
 					   <input type="submit" value="Vyhledat uživatele" size="30" name="submit">
 				
 				
-				<br><table>
+				<br>
+				<div id="table-scroll">
+				<table>
 
 					<tr bgcolor="#3d9615"><font color="#FFF">
 						<td><font color="#FFF"><b>JMÉNO</b></font></td> 
@@ -92,7 +94,10 @@
 					</tr>
 					   
 				    <!--  STUDENTI -->
-                    <?php                        
+                    <tr bgcolor="#656665">
+						<td colspan="4"><font color="#FFF"><b>STUDENTI</b></font></td> 
+					</tr>
+					<?php                        
                         $data = mysqli_query($conn, $query_student) or die("Cannot access database.").mysqli_error($conn);
                         while($data_array = mysqli_fetch_array($data, MYSQLI_ASSOC)){
                     ?>
@@ -104,8 +109,12 @@
         					</tr>    
                     <?php
                         }
-                    ?>
+                    
+					?>
                     <!--  UCITELE -->
+					<tr bgcolor="#656665">
+						<td colspan="4"><font color="#FFF"><b>VYUČUJÍCÍ</b></font></td> 
+					</tr>
                     <?php                        
                         $data = mysqli_query($conn, $query_teacher) or die("Cannot access database.").mysqli_error($conn);
                         while($data_array = mysqli_fetch_array($data, MYSQLI_ASSOC)){
@@ -120,6 +129,9 @@
                         }
                     ?>
                     <!--  ADMINI -->
+					<tr bgcolor="#656665">
+						<td colspan="4"><font color="#FFF"><b>ADMINISTRÁTOŘI</b></font></td> 
+					</tr>
                      <?php                        
                         $data = mysqli_query($conn, $query_admin) or die("Cannot access database.").mysqli_error($conn);
                         while($data_array = mysqli_fetch_array($data, MYSQLI_ASSOC)){
@@ -136,6 +148,7 @@
 
             </table>
             </form>
+			</div>
             
          
 

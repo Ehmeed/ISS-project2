@@ -34,6 +34,7 @@ while($data_array = mysqli_fetch_array($data, MYSQLI_ASSOC)){
 
             <h2>Registrace předmětů</h2>
             
+			<div id="table-scroll">
             <table>
                 <tr bgcolor="#3d9615"><font color="#FFF">
                     <td><font color="#FFF"><b>NÁZEV PŘEDMĚTU</b></font></td> 
@@ -77,6 +78,7 @@ while($data_array = mysqli_fetch_array($data, MYSQLI_ASSOC)){
 
                 ?>
                 </form>
+				</div>
 
 
 <?php include("template/footer.php");?>

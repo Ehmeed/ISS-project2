@@ -34,12 +34,12 @@
 <!--Obsah stranky-->          
             <h2>Odebrat předmět</h2>
 
-				<form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off"><br>
+				<form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off">
                 <br><div class="msg"><?php echo "{$message}";?></div>
 				   <input id="box" type="text" name="search">
 				   <input type="submit" value="Vyhledat předmět" size="30" name="submit">
 				
-
+				<br><div id="table-scroll">
                 <table>
 
                     <tr bgcolor="#3d9615"><font color="#FFF">
@@ -62,7 +62,9 @@
         
                     ?>
                 </table>
+				</div>
                 </form>
+				
          
 
 <?php include("admin_footer.php");?>
