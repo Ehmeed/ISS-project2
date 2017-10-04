@@ -10,6 +10,8 @@
 	define('DBPASS', '');
 	define('DBNAME', 'katarina');
 	
+	//error_reporting(0);
+
 	$conn = mysqli_connect(DBHOST,DBUSER,DBPASS, DBNAME);
 	
 	if ( !$conn ) {
