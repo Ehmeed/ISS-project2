@@ -28,7 +28,7 @@
 <!--Obsah stranky-->          
             <h2>Odebrat uživatele</h2>
                
-				<form method="post" action="" autocomplete="off"><br>
+				<form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off"><br>
 					   <input id="box" type="text" name="search">
 					   <input type="submit" value="Vyhledat uživatele" size="30" name="submit">
 				</form>
