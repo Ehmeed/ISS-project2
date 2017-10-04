@@ -4,6 +4,25 @@
     require_once '../dbconnect.php';
     $title = 'Odebrat uživatele - Fakultní informační systém';
     include("admin_header.php"); 
+
+    // TODO REMOVE I RESITEL KDYZ REMOVE SUTDNET
+
+    $query_student = "SELECT jmeno, prijmeni, id_resitel, login FROM student";
+    $query_teacher = "SELECT jmeno, id_vyucujici, login FROM vyucujici";
+    $query_admin = "SELECT login FROM admin";
+    $message = '';
+
+    if(isset($_POST['submit'])){
+        $expression = htmlspecialchars(strip_tags(trim($_POST['search'])));
+        if(empty($expression)){
+            $expression = '%';
+        }
+    $query_student = "SELECT jmeno, prijmeni, id_resitel, login, rodne_cislo FROM student WHERE LOWER(login) LIKE LOWER('%$expression%') OR
+                      LOWER(jmeno) LIKE LOWER('%$expression%') OR LOWER(prijmeni) LIKE LOWER('%$expression%') OR LOWER(rodne_cislo) LIKE LOWER('%$expression%')";
+    $query_teacher = "SELECT jmeno, id_vyucujici, login FROM vyucujici  LOWER(login) LIKE LOWER('%$expression%') OR  LOWER(jmeno) LIKE LOWER('%$expression%')";
+    $query_admin = "SELECT login FROM admin WHERE LOWER(login) LIKE LOWER('%$expression%')";
+    }
+
 ?>
 
 <!--Obsah stranky-->          
