@@ -16,13 +16,14 @@ include("template/header.php");
 					<td><font color="#FFF"><b>HODNOTÍCÍ</b></font></td> 
 					<td><font color="#FFF"><b>ZÍSKANÝCH BODŮ</b></font></td> 
 					<td><font color="#FFF"><b>MAX. BODŮ</b></font></td> 
+					<td><font color="#FFF"><b>DEADLINE</b></font></td> 
     			</tr>
 				
 				<?php
                 //TODO DATE, TEAM PROJECT
                 $date = date("Y-m-d h:i:s");
                 $login = $_SESSION['login'];
-                $query = "SELECT DISTINCT projekt.nazev, informace.pocet_bodu, projekt.maximum_bodu, vyucujici.jmeno, predmet.nazev FROM student, projekt, varianta, prihlasena_varianta, informace, vyucujici, predmet WHERE student.login = '$login' AND student.id_resitel = prihlasena_varianta.id_resitel AND prihlasena_varianta.id_varianta = varianta.id_varianta AND projekt.id_projekt = varianta.projekt AND prihlasena_varianta.info_reseni = informace.id_informace AND informace.hodnotici = vyucujici.id_vyucujici AND projekt.predmet = predmet.id_predmet
+                $query = "SELECT DISTINCT projekt.nazev, informace.pocet_bodu, projekt.maximum_bodu, vyucujici.jmeno, predmet.nazev, projekt.datum_odevzdani FROM student, projekt, varianta, prihlasena_varianta, informace, vyucujici, predmet WHERE student.login = '$login' AND student.id_resitel = prihlasena_varianta.id_resitel AND prihlasena_varianta.id_varianta = varianta.id_varianta AND projekt.id_projekt = varianta.projekt AND prihlasena_varianta.info_reseni = informace.id_informace AND informace.hodnotici = vyucujici.id_vyucujici AND projekt.predmet = predmet.id_predmet AND projekt.datum_odevzdani < now()
                 ";?>
                 
 				<!--  JEDNOTLIVCI -->
@@ -40,6 +41,7 @@ include("template/header.php");
                     <td><?php echo "{$data_array[3]} ";?></td>
                     <td><?php echo "{$data_array[1]} ";?></td>
 					<td><?php echo "{$data_array[2]} ";?></td>
+					<td><?php echo "{$data_array[5]} ";?></td>
 			   </tr>
 				<?php } ?>
 				
