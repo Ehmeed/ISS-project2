@@ -19,7 +19,7 @@
 		}elseif ($_SESSION['power'] == 'admin') {
 			$location = 'admin/home.php';
 		}elseif($_SESSION['power'] == 'teacher'){
-			$location = 'home.php'; //TODO
+			$location = 'teacher/home.php'; 
 		}
 		header("Location: $location");
         exit;
@@ -58,7 +58,7 @@
 						$_SESSION['login'] = $login;
 						$_SESSION['power'] = "teacher";
 						$_SESSION['timestamp'] = time();
-						header("Location: home.php"); // TODO REDIRECT TO TEACHER SITE
+						header("Location: teacher/home.php"); 
 					} else {
 						$query = "SELECT login, password FROM admin WHERE login='$login'";
 						$data = mysqli_query($conn, $query) or die("Cannot access database.").mysqli_error($conn);
