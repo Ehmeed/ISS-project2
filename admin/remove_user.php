@@ -17,10 +17,10 @@
         if(empty($expression)){
             $expression = '%';
         }
-    $query_student = "SELECT jmeno, prijmeni, id_resitel, login, rodne_cislo FROM student WHERE LOWER(login) LIKE LOWER('%$expression%') OR
-                      LOWER(jmeno) LIKE LOWER('%$expression%') OR LOWER(prijmeni) LIKE LOWER('%$expression%') OR LOWER(rodne_cislo) LIKE LOWER('%$expression%')";
-    $query_teacher = "SELECT jmeno, id_vyucujici, login FROM vyucujici  LOWER(login) LIKE LOWER('%$expression%') OR  LOWER(jmeno) LIKE LOWER('%$expression%')";
-    $query_admin = "SELECT login FROM admin WHERE LOWER(login) LIKE LOWER('%$expression%')";
+        $query_student = "SELECT jmeno, prijmeni, id_resitel, login, rodne_cislo FROM student WHERE LOWER(login) LIKE LOWER('%$expression%') OR
+                          LOWER(jmeno) LIKE LOWER('%$expression%') OR LOWER(prijmeni) LIKE LOWER('%$expression%') OR LOWER(rodne_cislo) LIKE LOWER('%$expression%')";
+        $query_teacher = "SELECT jmeno, id_vyucujici, login FROM vyucujici  LOWER(login) LIKE LOWER('%$expression%') OR  LOWER(jmeno) LIKE LOWER('%$expression%')";
+        $query_admin = "SELECT login FROM admin WHERE LOWER(login) LIKE LOWER('%$expression%')";
     }
 
 ?>
