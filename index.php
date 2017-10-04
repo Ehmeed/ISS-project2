@@ -14,7 +14,14 @@
 
 	// check is user already logged in, redirect
 	if(isset($_SESSION['login'])){
-		header("Location: home.php");
+		if($_SESSION['power'] == 'student'){
+			$location = 'home.php';
+		}elseif ($_SESSION['power'] == 'admin') {
+			$location = 'admin/home.php';
+		}elseif($_SESSION['power'] == 'teacher'){
+			$location = 'home.php'; //TODO
+		}
+		header("Location: $location");
         exit;
 	}
 
