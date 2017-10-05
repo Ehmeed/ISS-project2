@@ -2,11 +2,11 @@
 session_start();
 require_once 'check_login.php';
 require_once 'dbconnect.php';
-$title = 'Aktualní projekty - Fakultní informační systém';
+$title = 'Registrované projekty - Fakultní informační systém';
 include("template/header.php");
 ?>
 
-            <h2>Aktuální projekty</h2>
+            <h2>Registrované projekty</h2>
 			
 			<div id="table-scroll">			
             <table>
