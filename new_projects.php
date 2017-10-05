@@ -21,8 +21,27 @@ include("template/header.php");
     			<?php
                 //$date = date("Y-m-d h:i:s");
                 $login = $_SESSION['login'];
-                $query = "SELECT DISTINCT projekt.nazev, projekt.maximum_bodu, predmet.nazev, projekt.datum_odevzdani, projekt.minimum_bodu, projekt.maximum_bodu FROM student, projekt, varianta, prihlasena_varianta, predmet WHERE student.login = '$login' AND student.id_resitel = prihlasena_varianta.id_resitel AND prihlasena_varianta.id_varianta = varianta.id_varianta AND projekt.id_projekt = varianta.projekt AND projekt.predmet = predmet.id_predmet AND projekt.datum_odevzdani >= now()
-                	ORDER BY projekt.datum_odevzdani DESC
+                $query = "SELECT DISTINCT projekt.nazev, projekt.maximum_bodu, predmet.nazev, projekt.datum_odevzdani, projekt.minimum_bodu, projekt.maximum_bodu 
+                			FROM projekt, predmet, zapsany_predmet WHERE projekt.predmet = predmet.id_predmet AND projekt.datum_odevzdani >= now() AND
+                			predmet.id_predmet = zapsany_predmet.id_predmet AND zapsany_predmet.login = '$login' AND
+							projekt.id_projekt NOT IN (
+    							SELECT DISTINCT projekt.id_projekt FROM student, projekt, varianta, prihlasena_varianta, predmet WHERE student.login = '$login' 
+    							AND student.id_resitel = prihlasena_varianta.id_resitel AND prihlasena_varianta.id_varianta = varianta.id_varianta AND
+    							projekt.id_projekt = varianta.projekt AND projekt.predmet = predmet.id_predmet AND projekt.datum_odevzdani >= now()
+							)
+							AND projekt.id_projekt NOT IN(
+								SELECT DISTINCT projekt.id_projekt  FROM student, projekt, varianta, prihlasena_varianta, informace, vyucujici, predmet, tym, clenove_teamu WHERE 
+										student.login = '$login' AND
+										student.login = clenove_teamu.login_clena AND
+										clenove_teamu.id_teamu = tym.id_resitel AND
+										tym.id_resitel = prihlasena_varianta.id_resitel AND
+										prihlasena_varianta.id_varianta = varianta.id_varianta AND
+										projekt.id_projekt = varianta.projekt AND
+										projekt.predmet = predmet.id_predmet AND
+										projekt.datum_odevzdani >= now()
+
+							)
+               			 	ORDER BY projekt.datum_odevzdani DESC
                 ";?>
 				
 				<?php $data = mysqli_query($conn, $query) or die("Cannot access database.").mysqli_error($conn);
