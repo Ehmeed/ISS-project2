@@ -7,7 +7,7 @@
 ?>
 
 <!--Obsah stranky-->          
-            <h2>Přidat uživatele</h2>
+            <h2>Přidat uživatele</h2><br>	
 				<a href="add_student.php" class="link"><button class="tlacitko"><h4>PŘIDAT STUDENTA</h4></button></a><br><br>
                 <a href="add_teacher.php" class="link"><button class="tlacitko"><h4>PŘIDAT VYUČUJÍCÍHO</h4></button></a><br><br>
                 <a href="add_admin.php" class="link"><button class="tlacitko"><h4>PŘIDAT ADMINISTRÁTORA</h4></button></a>

@@ -8,7 +8,7 @@ include("template/header.php");
 
             <h2>Nové projekty</h2>
 			
-			<div id="table-scroll">			
+			<div id="table-scroll">		<br>		
             <table>
                 <tr bgcolor="#3d9615"><font color="#FFF">
                     <td><font color="#FFF"><b>PROJEKT</b></font></td> 

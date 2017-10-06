@@ -39,8 +39,8 @@ while($data_array = mysqli_fetch_array($data, MYSQLI_ASSOC)){
                 <tr bgcolor="#3d9615"><font color="#FFF">
                     <td><font color="#FFF"><b>NÁZEV PŘEDMĚTU</b></font></td> 
         			<td><font color="#FFF"><b>PŘIHLÁŠENO STUDENTŮ</b></font></td>
-        			<td><font color="#FFF"><b>REGISTRACE</b></font></td>
         			<td><font color="#FFF"><b>KAPACITA</b></font></td>
+					<td><font color="#FFF"><b>REGISTRACE</b></font></td>
     			</tr>
                 <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off"><br> 
                 <?php

@@ -118,7 +118,7 @@
 						<input id="box" type="password" name="heslo">
 						<br><span class="text-danger"><?php echo $hesloError; ?></span>
 					<h4>Kontakt:</h4>
-						<input id="box" type="text" name="kontakt"  value="<?php echo $kontakt; ?>">
+						<input id="box" type="text" name="kontakt"  value="<?php echo $kontakt; ?>">&nbsp(tel. číslo)
 						<br><span class="text-danger"><?php echo $kontaktError; ?></span>
 					<h4>Titul:</h4>
 						 <select id="box" name="titul">

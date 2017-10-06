@@ -6,7 +6,7 @@ $title = 'Ostatní - Fakultní informační systém';
 include("template/header.php");
 ?>
 
-            <h2>Ostatní</h2>
+            <h2>Ostatní</h2><br>	
             <a href="" class="link"><button class="tlacitko"><h4>POTVRZENÍ O STUDIU</h4></button></a><br><br>
             <a href="" class="link"><button class="tlacitko"><h4>VÝSTUPNÍ LIST STUDENTA</h4></button></a><br><br>
             <a href="" class="link"><button class="tlacitko"><h4>VÝSTUPNÍ LIST ABSOLVENTA</h4></button></a><br><br>
