@@ -41,8 +41,8 @@ include("template/header.php");
                   	<td><?php echo "{$data_array[0]} ";?></td> 
 				    <td><?php echo "";?></td> 
                     <td><?php echo "{$data_array[2]} ";?></td>
-                    <td><?php echo "{$data_array[4]} ";?></td>
-                    <td><?php echo "{$data_array[5]} ";?></td>
+                    <td style="text-align: center"><?php echo "{$data_array[4]} ";?></td>
+                    <td style="text-align: center"><?php echo "{$data_array[5]} ";?></td>
 					<td><?php echo "{$data_array[3]} ";?></td>			 
                  </tr> 
 
@@ -72,8 +72,8 @@ include("template/header.php");
 				    <td><?php echo "{$data_array[0]} ";?></td> 
 				    <td><?php echo "{$data_array[6]} ";?></td> 
                     <td><?php echo "{$data_array[2]} ";?></td>
-                    <td><?php echo "{$data_array[4]} ";?></td>
-                    <td><?php echo "{$data_array[5]} ";?></td>
+                    <td style="text-align: center"><?php echo "{$data_array[4]} ";?></td>
+                    <td style="text-align: center"><?php echo "{$data_array[5]} ";?></td>
 					<td><?php echo "{$data_array[3]} ";?></td>
 			   </tr>
 				<?php } ?>  

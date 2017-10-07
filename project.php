@@ -34,13 +34,13 @@ include("template/header.php");
 ?>
 
             <h2><?php echo $title ?></h2><br>
-            <h4><b>• Předmět: <?php echo $predmet ?></b></h4>
-			<h4><b>• Zadavatel: <?php echo $vyucujici ?></b></h4>
-			<h4><b>• Datum registrace: <?php echo $datum ?></b></h4>
-			<h4><b>• Datum odevzdání: <?php echo $datum ?></b></h4>
-			<h4><b>• Maximum bodů: <?php echo $max_body ?></b></h4>
-			<h4><b>• Minimum bodů: <?php echo $min_body ?></b></h4>
-			<h4><b>• Popis: <?php echo $desc ?></b></h4>
+            <h4><b>• Předmět:</b> <?php echo $predmet ?></h4>
+			<h4><b>• Zadavatel:</b> <?php echo $vyucujici ?></h4>
+			<h4><b>• Datum registrace:</b> <?php echo $datum ?></h4>
+			<h4><b>• Datum odevzdání:</b> <?php echo $datum ?></h4>
+			<h4><b>• Maximum bodů:</b> <?php echo $max_body ?></h4>
+			<h4><b>• Minimum bodů:</b> <?php echo $min_body ?></h4>
+			<h4><b>• Popis:</b> <?php echo $desc ?></h4>
 			
 			<h2>Varianty</h2>
 			<br><div id="table-scroll">
@@ -79,7 +79,7 @@ include("template/header.php");
 				
 				?>
 				<tr> 
-                  	 <td><?php echo $data_array['id_varianta']?></td>
+                  	 <td><input class="btn" type="button" value="IDS 1"></td>
 					 <td><?php echo $count[0]?></td>
 					 <td><?php echo $data_array['maximum_resitelu']?></td>
 					 <td><input type="submit" name="<?php echo $data_array['id_varianta']?>"value="<?php echo $button_text ?>"></td>
