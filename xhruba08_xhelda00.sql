@@ -47,7 +47,7 @@ id_varianta INT AUTO_INCREMENT PRIMARY KEY,
 maximum_resitelu INT NOT NULL,
 popis VARCHAR(100) NOT NULL,
 studentu_v_tymu INT NOT NULL,
-vedouci INT,
+vedouci INT NOT NULL,
 projekt INT NOT NULL
 );
 

@@ -8,7 +8,7 @@ if(!isset($id) or empty($id)){
 	header("Location: home.php");
     exit;
 }
-//maybe do a check if he has this subject
+
 //nacteni dat projektu
 $data = mysqli_query($conn,"SELECT DISTINCT projekt.nazev, projekt.popis, projekt.maximum_bodu, projekt.minimum_bodu, projekt.datum_odevzdani, vyucujici.jmeno, predmet.nazev, projekt.datum_prihlaseni FROM projekt, predmet, vyucujici WHERE projekt.id_projekt = $id AND projekt.predmet = predmet.id_predmet AND projekt.zadavatel = vyucujici.id_vyucujici") or die("Cannot access database.").mysqli_error($conn);
 $data_array = mysqli_fetch_array($data, MYSQLI_NUM);
