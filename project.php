@@ -18,7 +18,7 @@ if(mysqli_num_rows($data) != 1){
 }
 
 // ZDE ZPRACOVANI PRI KLIKNUTI NA TLACITKO PRIHLASIT
-// TODO TEAMY VYTVARENI 
+
 
 $title = $data_array[0];
 $desc = $data_array[1];
