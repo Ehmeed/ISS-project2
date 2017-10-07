@@ -34,16 +34,23 @@ include("template/header.php");
 ?>
 
             <h2><?php echo $title ?></h2><br>
+			
+			<h4><b>Týmy:</b> </h4>
+			<select id="box" name="tymy">
+					<option value=""></option> 		
+			</select> <br><br>
+			
             <h4><b>• Předmět:</b> <?php echo $predmet ?></h4>
 			<h4><b>• Zadavatel:</b> <?php echo $vyucujici ?></h4>
 			<h4><b>• Datum registrace:</b> <?php echo $datum ?></h4>
 			<h4><b>• Datum odevzdání:</b> <?php echo $datum ?></h4>
 			<h4><b>• Maximum bodů:</b> <?php echo $max_body ?></h4>
 			<h4><b>• Minimum bodů:</b> <?php echo $min_body ?></h4>
-			<h4><b>• Popis:</b> <?php echo $desc ?></h4>
+			<h4><b>• Popis:</b> <?php echo $desc ?></h4><br>
+
 			
 			<h2>Varianty</h2>
-			<br><div id="table-scroll">
+			<div id="table-scroll">
 			 <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])."?id_projekt=$id"; ?>" autocomplete="off"><br> 			
             <table>
                 <tr bgcolor="#3d9615"><font color="#FFF">
@@ -78,11 +85,12 @@ include("template/header.php");
                 }
 				$link = "version.php?id_varianta=";
 				?>
+				
 				<tr> 
                   	 <td><a href="<?php echo $link.$data_array['id_varianta']?>"><?php echo $data_array['id_varianta']?></a></td>	
 					 <td><?php echo $count[0]?></td>
 					 <td><?php echo $data_array['maximum_resitelu']?></td>
-					 <td><input type="submit" name="<?php echo $data_array['id_varianta']?>"value="<?php echo $button_text ?>"></td>
+					 <td><input type="submit" name="<?php echo $data_array['id_varianta']?>"value="<?php echo $button_text ?>"></td><!-- TADY MÁŠ TEN BUTTON -->
                  </tr> 
                  <?php
                  }
