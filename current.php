@@ -22,7 +22,7 @@ include("template/header.php");
     			<?php
                 //$date = date("Y-m-d h:i:s");
                 $login = $_SESSION['login'];
-                $query = "SELECT DISTINCT projekt.nazev, projekt.maximum_bodu, predmet.nazev, projekt.datum_odevzdani, projekt.minimum_bodu, projekt.maximum_bodu FROM student, projekt, varianta, prihlasena_varianta, predmet WHERE student.login = '$login' AND student.id_resitel = prihlasena_varianta.id_resitel AND prihlasena_varianta.id_varianta = varianta.id_varianta AND projekt.id_projekt = varianta.projekt AND projekt.predmet = predmet.id_predmet AND projekt.datum_odevzdani >= now()
+                $query = "SELECT DISTINCT projekt.nazev, projekt.maximum_bodu, predmet.nazev, projekt.datum_odevzdani, projekt.minimum_bodu, projekt.maximum_bodu, projekt.id_projekt FROM student, projekt, varianta, prihlasena_varianta, predmet WHERE student.login = '$login' AND student.id_resitel = prihlasena_varianta.id_resitel AND prihlasena_varianta.id_varianta = varianta.id_varianta AND projekt.id_projekt = varianta.projekt AND projekt.predmet = predmet.id_predmet AND projekt.datum_odevzdani >= now()
                 	ORDER BY projekt.datum_odevzdani DESC
                 ";?>
 
@@ -33,12 +33,12 @@ include("template/header.php");
 				<tr>
 				
 				<?php $data = mysqli_query($conn, $query) or die("Cannot access database.").mysqli_error($conn);
-
+				$link = "project.php?id_projekt=";
                 while($data_array = mysqli_fetch_array($data, MYSQLI_NUM)){ ?>
                         
 						
                  <tr> 
-                  	<td><?php echo "{$data_array[0]} ";?></td> 
+                  	<td><a href="<?php echo $link.$data_array[6]?>"><?php echo "{$data_array[0]} ";?></a></td> 
 				    <td><?php echo "";?></td> 
                     <td><?php echo "{$data_array[2]} ";?></td>
                     <td style="text-align: center"><?php echo "{$data_array[4]} ";?></td>
@@ -48,7 +48,7 @@ include("template/header.php");
 
                  <?php } 
 					//teamy
-					$query = "SELECT DISTINCT projekt.nazev, projekt.maximum_bodu, predmet.nazev, projekt.datum_odevzdani, projekt.minimum_bodu, projekt.maximum_bodu, tym.nazev_tymu  FROM student, projekt, varianta, prihlasena_varianta, informace, vyucujici, predmet, tym, clenove_teamu WHERE 
+					$query = "SELECT DISTINCT projekt.nazev, projekt.maximum_bodu, predmet.nazev, projekt.datum_odevzdani, projekt.minimum_bodu, projekt.maximum_bodu, tym.nazev_tymu, projekt.id_projekt  FROM student, projekt, varianta, prihlasena_varianta, informace, vyucujici, predmet, tym, clenove_teamu WHERE 
 						student.login = '$login' AND
 						student.login = clenove_teamu.login_clena AND
 						clenove_teamu.id_teamu = tym.id_resitel AND
@@ -69,7 +69,7 @@ include("template/header.php");
 
                 while($data_array = mysqli_fetch_array($data, MYSQLI_NUM)){ ?>
 	
-				    <td><?php echo "{$data_array[0]} ";?></td> 
+				    <td><a href="<?php echo $link.$data_array[7]?>"><?php echo "{$data_array[0]} ";?></a></td> 
 				    <td><?php echo "{$data_array[6]} ";?></td> 
                     <td><?php echo "{$data_array[2]} ";?></td>
                     <td style="text-align: center"><?php echo "{$data_array[4]} ";?></td>
