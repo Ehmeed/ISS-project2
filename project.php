@@ -76,10 +76,10 @@ include("template/header.php");
                 }else {
                 	$button_text = 'PŘIHLÁSIT';
                 }
-				
+				$link = "version.php?id_varianta=";
 				?>
 				<tr> 
-                  	 <td><input class="btn" type="button" value="IDS 1"></td>
+                  	 <td><a href="<?php echo $link.$data_array['id_varianta']?>"><?php echo $data_array['id_varianta']?></a></td>	
 					 <td><?php echo $count[0]?></td>
 					 <td><?php echo $data_array['maximum_resitelu']?></td>
 					 <td><input type="submit" name="<?php echo $data_array['id_varianta']?>"value="<?php echo $button_text ?>"></td>
