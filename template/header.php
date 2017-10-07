@@ -30,6 +30,9 @@
             <li>
                 <div class="link"><a href="projects.php" class="plain"><h4>PROJEKTY</h4><hr></a></div>
             </li>
+			<li>
+                <div class="link"><a href="teams.php" class="plain"><h4>TÝMY</h4><hr></a></div>
+            </li>
             <li>
                 <div class="link"><a href="other.php" class="plain"><h4>OSTATNÍ</h4><hr></a></div>
             </li>

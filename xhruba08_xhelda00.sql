@@ -1,4 +1,4 @@
-drop TABLE informace;
+﻿drop TABLE informace;
 drop TABLE predmet;
 drop TABLE projekt;
 drop TABLE resitel;
