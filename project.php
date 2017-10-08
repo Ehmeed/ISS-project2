@@ -59,10 +59,15 @@ while($data_array = mysqli_fetch_array($data, MYSQLI_ASSOC)){
 			if($kapacita <= $prihlasenych){
 				$message = 'Varianta je již plně obsazená';
 			}else {
-				if(mysqli_query($conn, "INSERT INTO prihlasena_varianta(id_resitel, id_varianta) VALUES($my_id, $variant)")){
-					$message = 'Byl jste přihlášen';
+				$studentu_v_tymu = mysqli_fetch_array(mysqli_query($conn, "SELECT studentu_v_tymu FROM varianta WHERE id_varianta = $variant"), MYSQLI_NUM)[0];
+				if($studentu_v_tymu > 2){
+					$message = 'Nemůžete se přihlásit sám na týmový projekt';
 				}else {
-					$message = 'Přihlášení se nezdařilo';
+					if(mysqli_query($conn, "INSERT INTO prihlasena_varianta(id_resitel, id_varianta) VALUES($my_id, $variant)")){
+						$message = 'Byl jste přihlášen';
+					}else {
+						$message = 'Přihlášení se nezdařilo';
+					}
 				}
 			}
 		}else if($reged_as_single == 1 and $_POST[$variant] = 'ODHLÁSIT'){
@@ -72,9 +77,64 @@ while($data_array = mysqli_fetch_array($data, MYSQLI_ASSOC)){
 
 	}else {
 		//team
+		$fail = false;
 		$team_id = substr($team_id, 5);
+		$members_array = array();
+		if($_POST[$variant] == 'ODHLÁSIT'){
+			if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM prihlasena_varianta WHERE id_varianta = $variant AND id_resitel = $team_id")) != 0){
+				mysqli_query($conn, "DELETE FROM prihlasena_varianta WHERE id_resitel = $team_id AND id_varianta = $variant");
+				$message = 'Byl jste odhlášen';
+			}					
+		}else{
+
+		$data = mysqli_query($conn, "SELECT DISTINCT login_clena FROM clenove_teamu WHERE id_teamu = $team_id");
+		while($members = mysqli_fetch_array($data, MYSQLI_NUM)){
+			$members_array[] = $members[0];
+		}
+		//kontrola zda je jich spravny pocet pro registraci
+		$studentu_v_tymu = mysqli_fetch_array(mysqli_query($conn, "SELECT studentu_v_tymu FROM varianta WHERE id_varianta = $variant"), MYSQLI_NUM)[0];
+		if(count($members_array) > $studentu_v_tymu){
+			$message = 'Počet členů v týmu je moc vysoký pro tuto variantu';
+		}else {
+			//kontrola zda neni varianta plna
+			$prihlasenych = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM prihlasena_varianta WHERE id_varianta = $variant"));
+			$kapacita = mysqli_fetch_array(mysqli_query($conn, "SELECT maximum_resitelu FROM varianta WHERE id_varianta = $variant"), MYSQLI_NUM)[0];
+			if($kapacita <= $prihlasenych){
+				$message = 'Varianta je již plně obsazená';
+			}else { 
+								
+				//kontrola vsech clenu, zda se muzou registrovat na projekt
+				foreach ($members_array as $team_member_login) { 
+			    	$reged = mysqli_num_rows(mysqli_query($conn,"SELECT DISTINCT predmet.id_predmet FROM zapsany_predmet, projekt, predmet WHERE zapsany_predmet.login = '$team_member_login' AND zapsany_predmet.id_predmet = predmet.id_predmet AND projekt.predmet = predmet.id_predmet AND projekt.id_projekt = $id"));
+					if($reged != 1){
+						$message = 'Na tento projekt se nemůžete přihlásit, některý z členů nemá zapsaný odpovídající předmět.';
+						$fail = true;
+						break;
+					}
+					$errors = mysqli_num_rows(mysqli_query($conn, "SELECT DISTINCT * FROM prihlasena_varianta, student, projekt, varianta WHERE student.login = '$team_member_login' AND prihlasena_varianta.id_resitel = student.id_resitel AND prihlasena_varianta.id_varianta = varianta.id_varianta AND varianta.projekt = projekt.id_projekt AND projekt.id_projekt = $id"));
+					
+					$team_reged = mysqli_num_rows(mysqli_query($conn, "SELECT DISTINCT * FROM clenove_teamu, prihlasena_varianta, varianta, projekt WHERE clenove_teamu.login_clena = '$team_member_login' AND prihlasena_varianta.id_resitel = clenove_teamu.id_teamu AND prihlasena_varianta.id_varianta = varianta.id_varianta AND varianta.projekt = projekt.id_projekt AND projekt.id_projekt = $id"));
+					if($errors != 0 or $team_reged != 0){
+						$message = 'Na tento projekt je již některý z členů teamu přihlášen';
+						$fail = true;
+						break;
+					}
+
+				}
+				//vsichni clenove v poradku, system se muze pokusit o prihlaseni teamu
+				if(!$fail){
+					if(mysqli_query($conn, "INSERT INTO prihlasena_varianta(id_resitel, id_varianta) VALUES($team_id, $variant)")){
+						$message = 'Byl jste přihlášen';
+					}else {
+						$message = 'Přihlášení se nezdařilo';
+					}
+				}
+			}
+		}
 	}
-  	break;
+		
+	}
+  	//break;
   }
 } 
 
