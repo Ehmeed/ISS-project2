@@ -34,10 +34,23 @@ include("template/header.php");
 ?>
 
             <h2><?php echo $title ?></h2><br>
-			
+			<form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])."?id_projekt=$id"; ?>" autocomplete="off">
 			<h4><b>Týmy:</b> </h4>
 			<select id="box" name="tymy">
-					<option value=""></option> 		
+					<option value="0">(žádný tým)</option> 	
+
+					<?php
+                	$query = "SELECT tym.id_resitel, tym.nazev_tymu FROM tym, clenove_teamu WHERE
+                	 login_clena = '$login' AND clenove_teamu.id_teamu = tym.id_resitel";
+                	$data = mysqli_query($conn, $query) or die("Cannot access database.").mysqli_error($conn);
+               		while($data_array = mysqli_fetch_array($data, MYSQLI_ASSOC)){ 	
+               		?>
+
+               		<option value="<?php echo "team:".$data_array['id_resitel']?>"><?php echo $data_array['nazev_tymu']?></option> 
+
+               		<?php
+               		}
+               		?>
 			</select> <br><br>
 			
             <h4><b>• Předmět:</b> <?php echo $predmet ?></h4>
@@ -51,7 +64,7 @@ include("template/header.php");
 			
 			<h2>Varianty</h2>
 			<div id="table-scroll">
-			 <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])."?id_projekt=$id"; ?>" autocomplete="off"><br> 			
+			 <br> 			
             <table>
                 <tr bgcolor="#3d9615"><font color="#FFF">
                     <td><font color="#FFF"><b>VARIANTA</b></font></td> 
