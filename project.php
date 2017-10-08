@@ -38,6 +38,13 @@ while($data_array = mysqli_fetch_array($data, MYSQLI_ASSOC)){
   	//kontrola zda jiz student neni prihalseny
 	$team_id = $_POST['tymy'];
 	//TODO CHECK DATe
+	$datum = mysqli_fetch_array(mysqli_query($conn, "SELECT datum_prihlaseni FROM projekt WHERE id_projekt = $id"), MYSQLI_NUM)[0];
+	$today = date("Y-m-d H:i:s");
+	if($today > $datum){
+		$message = 'Přihlašování již skončilo';
+		break;
+	}
+	
 	if($team_id == "0"){
 		//jednotlivec
 		$errors = mysqli_num_rows(mysqli_query($conn, "SELECT DISTINCT * FROM prihlasena_varianta, student, projekt, varianta WHERE student.login = '$login' AND prihlasena_varianta.id_resitel = student.id_resitel AND prihlasena_varianta.id_varianta = varianta.id_varianta AND varianta.projekt = projekt.id_projekt AND projekt.id_projekt = $id"));
