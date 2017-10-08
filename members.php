@@ -105,38 +105,43 @@ if(isset($_POST['odebrat']) and $vedouci){
 		<?php
 		if($vedouci){
 		?>
-		<h3><font color="#000">Přidat do týmu</h3>
-			<div class="formular">
-				<form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])."?id_teamu=". $id; ?>" autocomplete="off">
-				<div class="msg"><?php echo "{$message}";?></div>
-					<h4>*Login studenta</h4>
-						<input id="box" type="text" name="jmeno" value="">
-						<br><span class="text-danger"><?php echo $nameError; ?></span></font>			
-						
-					<br><br>
-						<font color="#c60614">* položky označené hvězdičkou jsou povinné</font>
-					<br><br>
-					
-					<input type="submit" name="pridat" value="Přidat člena" size="30"><br><br>
-				</form> 
-		</div>
-
 		
-		<h3><font color="#000">Odebrat z týmu</h3>
-			<div class="formular">
-				<form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])."?id_teamu=". $id; ?>" autocomplete="off">
-				<div class="msg"><?php echo "{$message_remove}";?></div>
-					<h4>*Login studenta</h4>
-						<input id="box" type="text" name="jmeno_remove" value="">
-						<br><span class="text-danger"><?php echo $nameError_remove; ?></span></font>			
-						
-					<br><br>
-						<font color="#c60614">* položky označené hvězdičkou jsou povinné</font>
-					<br><br>
-					
-					<input type="submit" name="odebrat" value="Odebrat člena" size="30"><br><br>
-				</form> 
-		</div>
+		<table>
+            <tr ><font color="#FFF">
+                <td>
+					<h3><font color="#000">Přidat do týmu</h3>
+						<div class="formular">
+							<form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])."?id_teamu=". $id; ?>" autocomplete="off">
+							<div class="msg"><?php echo "{$message}";?></div>
+								<h4>*Login studenta</h4>
+									<input id="box" type="text" name="jmeno" value="">
+									<br><span class="text-danger"><?php echo $nameError; ?></span></font>			
+
+									<font color="#c60614">* položky označené hvězdičkou jsou povinné</font>
+								<br><br>
+								<input type="submit" name="pridat" value="Přidat člena" size="30"><br><br>
+							</form> 
+					</div>
+				</td> 
+		
+                <td>
+					<h3><font color="#000">Odebrat z týmu</h3>
+					<div class="formular">
+						<form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])."?id_teamu=". $id; ?>" autocomplete="off">
+						<div class="msg"><?php echo "{$message_remove}";?></div>
+							<h4>*Login studenta</h4>
+								<input id="box" type="text" name="jmeno_remove" value="">
+								<br><span class="text-danger"><?php echo $nameError_remove; ?></span></font>			
+								<font color="#c60614">* položky označené hvězdičkou jsou povinné</font>
+							<br><br>
+							
+							<input type="submit" name="odebrat" value="Odebrat člena" size="30"><br><br>
+						</form> 
+					</div>
+				</td> 
+    		</tr>
+			
+		</table>
 
 		<?php
 			}

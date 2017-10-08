@@ -67,9 +67,8 @@ while($data_array = mysqli_fetch_array($data, MYSQLI_ASSOC)){
 
                     <tr> 
                        <td> <?php echo "{$data_array['nazev']}";?> </td>   
-                       <td> <?php echo "{$count['pocet']}";?> </td>   
-                       <td> <?php echo "{$data_array['kapacita']}";?> </td>  
-                       
+                       <td style="text-align: center"> <?php echo "{$count['pocet']}";?> </td>   
+                       <td style="text-align: center"> <?php echo "{$data_array['kapacita']}";?> </td>     
                        <td><input type="submit" value="<?php echo $button_text ?>" size="50" name="<?php echo "{$data_array['id_predmet']}"?>"></td> 
                        
            			</tr>  
