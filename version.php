@@ -30,6 +30,22 @@ include("template/header.php");
             <h2><?php echo $title . " varianta " . $id ?></h2><br>
             <h4><b>• Vedoucí: <?php echo $vedouci ?></b></h4>
 			<h4><b>• Studentů v týmu: <?php echo $studentu_v_tymu?></b></h4>
-			<h4><b>• Popis: <?php echo $popis?></b></h4>		 
+			<h4><b>• Popis: <?php echo $popis?></b></h4>		
+
+
+			<?php
+				$data_array = mysqli_fetch_array(mysqli_query($conn, "SELECT DISTINCT informace.* FROM informace, prihlasena_varianta, student WHERE prihlasena_varianta.id_varianta = $id AND prihlasena_varianta.info_reseni = informace.id_informace AND (prihlasena_varianta.id_resitel = student.id_resitel AND student.login = '$login') or
+					'$login' IN(
+						SELECT clenove_teamu.login_clena FROM clenove_teamu, prihlasena_varianta WHERE clenove_teamu.id_teamu = prihlasena_varianta.id_resitel AND prihlasena_varianta.id_varianta = $id
+					)"), MYSQLI_NUM);
+				if(count($data_array) > 0){
+
+			?> 
+
+				TADY SEM TO NACPI :S
+
+			<?php 
+				}
+			?>
                 
 <?php include("template/footer.php");?>
