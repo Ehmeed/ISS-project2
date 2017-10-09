@@ -28,9 +28,9 @@ include("template/header.php");
 ?>
 
             <h2><?php echo $title . " varianta " . $id ?></h2><br>
-            <h4><b>• Vedoucí: <?php echo $vedouci ?></b></h4>
-			<h4><b>• Studentů v týmu: <?php echo $studentu_v_tymu?></b></h4>
-			<h4><b>• Popis: <?php echo $popis?></b></h4>		
+            <h4><b>• Vedoucí:</b> <?php echo $vedouci ?></h4>
+			<h4><b>• Studentů v týmu:</b> <?php echo $studentu_v_tymu?></h4>
+			<h4><b>• Popis:</b> <?php echo $popis?></h4>		
 
 
 			<?php
@@ -54,12 +54,12 @@ include("template/header.php");
                     <tr> 
                        <td> <?php echo $data_array[3]?> </td>   
                        <td> <?php echo $hodnotici ?> </td>   
-                       <td style="text-align: center"><font color="#3d9615"><h4> <?php echo $data_array[1]?> </h4></font></td>      
+                       <td style="text-align: left"><font color="#3d9615"><h4> <?php echo $data_array[1]?> </h4></font></td>      
            			</tr>  
                 
 				</div>
 				</table>
-				Komentář k hodnocení:
+				<h3><font color="#000">Komentář k hodnocení:</font></h3>
 				<br>
 				<?php echo $data_array[2]?>
 				<?php
