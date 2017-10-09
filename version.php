@@ -39,31 +39,33 @@ include("template/header.php");
 						SELECT clenove_teamu.login_clena FROM clenove_teamu, prihlasena_varianta WHERE clenove_teamu.id_teamu = prihlasena_varianta.id_resitel AND prihlasena_varianta.id_varianta = $id
 					)"), MYSQLI_NUM);
 				if(count($data_array) > 0){
-
-			?> <br>
+					$hodnotici = mysqli_fetch_array(mysqli_query($conn, "SELECT jmeno FROM vyucujici WHERE id_vyucujici = $data_array[4]"))[0];
+				?>
+				<br>
 				<h3>Informace o hodnocení</h3>
 				<div id="table-scroll">
 				<table>
 					<tr bgcolor="#3d9615"><font color="#FFF">
 						<td><font color="#FFF"><b>DATUM HODNOCENÍ</b></font></td> 
-        		      	<td><font color="#FFF"><b>HODNOTÍCÍ</b></font></td>        			
-        		      	<td><font color="#FFF"><b>ŘEŠENÍ</b></font></td>
+        		      	<td><font color="#FFF"><b>HODNOTÍCÍ</b></font></td> 
 						<td><font color="#FFF"><b>POČET BODŮ</b></font></td>
     		      	</tr>              
 
                     <tr> 
-                       <td> <?php ?> </td>   
-                       <td> <?php ?> </td>   
-                       <td> <?php ?> </td>     
-                       <td style="text-align: center"><font color="#3d9615"><h4> <?php ?> </h4></font></td>      
+                       <td> <?php echo $data_array[3]?> </td>   
+                       <td> <?php echo $hodnotici ?> </td>   
+                       <td style="text-align: center"><font color="#3d9615"><h4> <?php echo $data_array[1]?> </h4></font></td>      
            			</tr>  
-                 
-                    <?php
+                
+				</div>
+				</table>
+				Komentář k hodnocení:
+				<br>
+				<?php echo $data_array[2]?>
+				<?php
                 }
 
                 ?>
-                </form>
-				</div>
 
                 
 <?php include("template/footer.php");?>
