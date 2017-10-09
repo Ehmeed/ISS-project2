@@ -28,7 +28,19 @@ $max_size = 10000000; //~10MB
 $message = '';
 $uploaded = false;
 $location = 'uploads/'.$id.'/';
+$canUpload = false;
 
+$prihlasen = mysqli_num_rows(mysqli_query($conn, "SELECT DISTINCT id_varianta FROM prihlasena_varianta, student WHERE  student.login = '$login' AND student.id_resitel = prihlasena_varianta.id_resitel AND prihlasena_varianta.id_varianta = $id"));
+
+$prihlasen = $prihlasen + mysqli_num_rows(mysqli_query($conn, "SELECT DISTINCT id_varianta FROM prihlasena_varianta, tym WHERE  tym.login_vedouciho = '$login' AND tym.id_resitel = prihlasena_varianta.id_resitel AND prihlasena_varianta.id_varianta = $id"));
+
+$datum = mysqli_fetch_array(mysqli_query($conn, "SELECT datum_odevzdani FROM projekt, varianta WHERE varianta.id_varianta = $id AND varianta.projekt = projekt.id_projekt"), MYSQLI_NUM)[0];
+$today = date("Y-m-d H:i:s");
+if($today > $datum){
+	$canUpload = false;
+}else if($prihlasen == 1){
+	$canUpload = true;
+}
 if(isset($_POST['nahrat'])){
 	$file_name = $_FILES['file']['name'];
 	$file_size = $_FILES['file']['size'];
@@ -115,17 +127,22 @@ include("template/header.php");
                 if($uploaded){
                 	echo '<br><h3>Vaše soubory:</h3>';
              		echo $login.'.zip';
-               
-           			echo '<input type="submit" name="smazat" value="Smazat">';
-
-           		}
-                ?>
-                 <br><h3>Nahrát soubor:</h3>
-                <input type="file" name="file">
-                <input type="submit" name="nahrat" value="Nahrát">
-                </form>
-                <?php
                 }
+           		if($canUpload){
+           			if($uploaded){
+       					echo '<input type="submit" name="smazat" value="Smazat">';
+       				}
+       		
+
+	                ?>
+	                 <br><h3>Nahrát soubor:</h3>
+	                <input type="file" name="file">
+	                <input type="submit" name="nahrat" value="Nahrát">
+	                </form>
+	                <?php
+	            }
+	            
+            	}
 
                 ?>
                 	<div class="msg"><?php echo "{$message}";?></div>
