@@ -85,11 +85,12 @@ include("template/header.php");
                 
 				</div>
 				</table>
-				<br><h3><font color="#000">Komentář k hodnocení:</font></h3>
+				<br><h3><font color="#000">Komentář k hodnocení:</h3>
 				<br>
 				<?php echo $data_array[2]?>
 				<?php
-                }else {
+                }		
+				else {
 
                 ?>
                 <br><h3>Nahrát soubor:</h3>
