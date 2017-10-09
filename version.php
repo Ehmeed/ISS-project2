@@ -24,6 +24,32 @@ $vedouci = $data_array[3];
 $popis = $data_array[4];
 
 
+$max_size = 10000000; //~10MB
+$message = '';
+
+if(isset($_POST['nahrat'])){
+	$file_name = $_FILES['file']['name'];
+	$file_size = $_FILES['file']['size'];
+	$file_type = $_FILES['file']['type'];
+	$tmp_name = $_FILES['file']['tmp_name'];
+	
+
+	if(isset($file_name) and $file_name==$login.'.zip' and $file_size < $max_size){
+		$location = 'uploads/'.$id.'/';
+		if(!file_exists($location)){
+			mkdir($location, 0700);
+		}
+		if(move_uploaded_file($tmp_name, $location.$file_name)){
+			$message = 'Soubor nahrán';
+		}else {
+			$message = 'Upload se nezdařil. Zkuste to prosím později nebo kontaktujte administrátora';
+		}
+	}else{
+		$message = 'Nahrajte prosím soubor s názvem ve tvaru vas_login.zip a velikostí do 10 MB';
+	}
+}
+
+
 include("template/header.php");
 ?>
 
@@ -63,9 +89,18 @@ include("template/header.php");
 				<br>
 				<?php echo $data_array[2]?>
 				<?php
+                }else {
+
+                ?>
+                Nahrát soubor:
+                <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])."?id_varianta=$id"; ?>" autocomplete="off" enctype="multipart/form-data">
+                <input type="file" name="file">
+                <input type="submit" name="nahrat">
+                </form>
+                <?php
                 }
 
                 ?>
-
+                	<div class="msg"><?php echo "{$message}";?></div>
                 
 <?php include("template/footer.php");?>
