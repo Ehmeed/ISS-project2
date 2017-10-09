@@ -85,17 +85,17 @@ include("template/header.php");
                 
 				</div>
 				</table>
-				<h3><font color="#000">Komentář k hodnocení:</font></h3>
+				<br><h3><font color="#000">Komentář k hodnocení:</font></h3>
 				<br>
 				<?php echo $data_array[2]?>
 				<?php
                 }else {
 
                 ?>
-                Nahrát soubor:
+                <br><h3>Nahrát soubor:</h3>
                 <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])."?id_varianta=$id"; ?>" autocomplete="off" enctype="multipart/form-data">
                 <input type="file" name="file">
-                <input type="submit" name="nahrat">
+                <input type="submit" name="nahrat" value="Nahrát">
                 </form>
                 <?php
                 }
