@@ -115,7 +115,7 @@ if(isset($_POST['odebrat']) and $vedouci){
 							<div class="msg"><?php echo "{$message}";?></div>
 								<h4>*Login studenta</h4>
 									<input id="box" type="text" name="jmeno" value="">
-									<br><span class="text-danger"><?php echo $nameError; ?></span></font>			
+									<br><span class="text-danger"><?php echo $nameError; ?></span></font>	<br>		
 
 									<font color="#c60614">* položky označené hvězdičkou jsou povinné</font>
 								<br><br>
@@ -131,7 +131,7 @@ if(isset($_POST['odebrat']) and $vedouci){
 						<div class="msg"><?php echo "{$message_remove}";?></div>
 							<h4>*Login studenta</h4>
 								<input id="box" type="text" name="jmeno_remove" value="">
-								<br><span class="text-danger"><?php echo $nameError_remove; ?></span></font>			
+								<br><span class="text-danger"><?php echo $nameError_remove; ?></span></font><br>			
 								<font color="#c60614">* položky označené hvězdičkou jsou povinné</font>
 							<br><br>
 							
