@@ -2,5 +2,5 @@
 
 
 
- a odevzdani reseni, 
+ a odevzdani reseni - vyresit kontrolu zda muze odevzdavat cas a prihlasen?
 

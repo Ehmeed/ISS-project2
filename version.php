@@ -26,6 +26,8 @@ $popis = $data_array[4];
 
 $max_size = 10000000; //~10MB
 $message = '';
+$uploaded = false;
+$location = 'uploads/'.$id.'/';
 
 if(isset($_POST['nahrat'])){
 	$file_name = $_FILES['file']['name'];
@@ -35,10 +37,12 @@ if(isset($_POST['nahrat'])){
 	
 
 	if(isset($file_name) and $file_name==$login.'.zip' and $file_size < $max_size){
-		$location = 'uploads/'.$id.'/';
+		
 		if(!file_exists($location)){
 			mkdir($location, 0700);
 		}
+
+		
 		if(move_uploaded_file($tmp_name, $location.$file_name)){
 			$message = 'Soubor nahrán';
 		}else {
@@ -48,7 +52,19 @@ if(isset($_POST['nahrat'])){
 		$message = 'Nahrajte prosím soubor s názvem ve tvaru vas_login.zip a velikostí do 10 MB';
 	}
 }
-
+if(isset($_POST['smazat'])){
+	if(unlink($location.$login.'.zip')){
+		$message = 'Soubor smazán';
+	}else {
+		$message = 'Soubor se nepodařilo smazat';
+	}
+}
+if(file_exists($location)){
+	$files = scandir($location, 1);
+	if(in_array($login.'.zip', $files)){
+		$uploaded = true; 
+	}
+}
 
 include("template/header.php");
 ?>
@@ -93,8 +109,18 @@ include("template/header.php");
 				else {
 
                 ?>
-                <br><h3>Nahrát soubor:</h3>
                 <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])."?id_varianta=$id"; ?>" autocomplete="off" enctype="multipart/form-data">
+                
+                 <?php
+                if($uploaded){
+                	echo '<br><h3>Vaše soubory:</h3>';
+             		echo $login.'.zip';
+               
+           			echo '<input type="submit" name="smazat" value="Smazat">';
+
+           		}
+                ?>
+                 <br><h3>Nahrát soubor:</h3>
                 <input type="file" name="file">
                 <input type="submit" name="nahrat" value="Nahrát">
                 </form>
