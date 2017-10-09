@@ -40,12 +40,30 @@ include("template/header.php");
 					)"), MYSQLI_NUM);
 				if(count($data_array) > 0){
 
-			?> 
+			?> <br>
+				<h3>Informace o hodnocení</h3>
+				<div id="table-scroll">
+				<table>
+					<tr bgcolor="#3d9615"><font color="#FFF">
+						<td><font color="#FFF"><b>DATUM HODNOCENÍ</b></font></td> 
+        		      	<td><font color="#FFF"><b>HODNOTÍCÍ</b></font></td>        			
+        		      	<td><font color="#FFF"><b>ŘEŠENÍ</b></font></td>
+						<td><font color="#FFF"><b>POČET BODŮ</b></font></td>
+    		      	</tr>              
 
-				TADY SEM TO NACPI :S
+                    <tr> 
+                       <td> <?php ?> </td>   
+                       <td> <?php ?> </td>   
+                       <td> <?php ?> </td>     
+                       <td style="text-align: center"><font color="#3d9615"><h4> <?php ?> </h4></font></td>      
+           			</tr>  
+                 
+                    <?php
+                }
 
-			<?php 
-				}
-			?>
+                ?>
+                </form>
+				</div>
+
                 
 <?php include("template/footer.php");?>
