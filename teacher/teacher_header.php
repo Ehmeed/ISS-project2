@@ -25,19 +25,11 @@
                 <div class="link"><a href="home.php" class="plain"><h4>ÚVOD</h4><hr></a></div>
             </li>
             <li>
-                <div class="link"><a href="subjects.php" class="plain"><h4>PŘEDMĚTY</h4><hr></a></div>
+                <div class="link"><a href="teacher_subjects.php" class="plain"><h4>PŘEDMĚTY</h4><hr></a></div>
             </li>
             <li>
-                <div class="link"><a href="" class="plain"><h4>X</h4><hr></a></div>
+                <div class="link"><a href="teacher_projects.php" class="plain"><h4>PROJEKTY</h4><hr></a></div>
             </li>
-            <li>
-                <div class="link"><a href="" class="plain"><h4>X</h4><hr></a></div>
-            </li>
-
-            <li>
-                <div class="link"><a href="" class="plain"><h4>X</h4><hr></a></div>
-            </li>
-
 			<li>
                 <div class="link"><a href="../logout.php" class="plain"><h4>ODHLÁSIT</h4><hr></a></div>
             </li>
