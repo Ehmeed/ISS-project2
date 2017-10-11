@@ -44,6 +44,7 @@ datum_prihlaseni TIMESTAMP
 
 CREATE TABLE varianta (
 id_varianta INT AUTO_INCREMENT PRIMARY KEY,
+nazev VARCHAR(50) NOT NULL,
 maximum_resitelu INT NOT NULL,
 popis VARCHAR(100) NOT NULL,
 studentu_v_tymu INT NOT NULL,

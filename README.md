@@ -1,4 +1,7 @@
 # ISS-project2
 
 
-TODO VERSION, vytvorit variantu, hodnotit studenta
+
+edit predmetu must be done biatch,
+refactor codu must not be done
+vytvorit vzorovou db naplneni dat

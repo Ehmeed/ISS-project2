@@ -193,7 +193,7 @@ include("template/header.php");
     			</tr>  
 
 				<?php
-                $query = "SELECT id_varianta, maximum_resitelu FROM varianta WHERE projekt = $id";
+                $query = "SELECT id_varianta, maximum_resitelu, nazev FROM varianta WHERE projekt = $id";
                 $data = mysqli_query($conn, $query) or die("Cannot access database.").mysqli_error($conn);
                 while($data_array = mysqli_fetch_array($data, MYSQLI_ASSOC)){ 
                 
@@ -219,7 +219,7 @@ include("template/header.php");
 				?>
 				
 				<tr> 
-                  	 <td><a href="<?php echo $link.$data_array['id_varianta']?>"><?php echo $data_array['id_varianta']?></a></td>	
+                  	 <td><a href="<?php echo $link.$data_array['id_varianta']?>"><?php echo $data_array['nazev']?></a></td>	
 					 <td><?php echo $count[0]?></td>
 					 <td><?php echo $data_array['maximum_resitelu']?></td>
 					 <td><input type="submit" name="<?php echo $data_array['id_varianta']?>"value="<?php echo $button_text ?>"></td>

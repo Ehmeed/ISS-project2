@@ -45,7 +45,7 @@
 					<tr> 
 						 <td><?php echo $data_array[0]. " ".$data_array[1]?></td>
 						 <td><?php echo $data_array[3]?></td>
-						 <td><a href="TODO">Řešení</a></td>
+						 <td><a href="grade_project.php?id_resitel=<?php echo $data_array[2]?>&id_varianta=<?php echo $id?>">Řešení</a></td>
 					</tr> 
 					
 					<?php
@@ -61,7 +61,7 @@
 					<tr> 
 						 <td><?php echo $data_array[0]?></td>
 						 <td><?php echo $data_array[1]?></td>
-						 <td><a href="TODO">Řešení</a></td>
+						 <td><a href="grade_project.php?id_resitel=<?php echo $data_array[2]?>&id_varianta=<?php echo $id?>">Řešení</a></td>
 					</tr> 
 					
 					<?php
