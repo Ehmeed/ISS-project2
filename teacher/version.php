@@ -32,7 +32,6 @@
 				<table>
 					<tr bgcolor="#3d9615"><font color="#FFF">
 						<td><font color="#FFF"><b>JMÉNO</b></font></td> 
-						<td><font color="#FFF"><b>PŘÍJMENÍ</b></font></td> 
 						<td><font color="#FFF"><b>LOGIN</b></font></td>  
 						<td><font color="#FFF"><b>SOUBORY</b></font></td>  
 					</tr>  
@@ -44,9 +43,24 @@
 				    while($data_array = mysqli_fetch_array($data, MYSQLI_NUM)){
 					?>
 					<tr> 
+						 <td><?php echo $data_array[0]. " ".$data_array[1]?></td>
+						 <td><?php echo $data_array[3]?></td>
+						 <td><a href="TODO">Řešení</a></td>
+					</tr> 
+					
+					<?php
+					}
+					?>
+
+					<?php 
+
+				    $query = "SELECT tym.nazev_tymu, tym.login_vedouciho, tym.id_resitel FROM tym, prihlasena_varianta WHERE tym.id_resitel = prihlasena_varianta.id_resitel AND prihlasena_varianta.id_varianta = $id";
+				    $data = mysqli_query($conn, $query) or die("Cannot access database.").mysqli_error($conn);
+				    while($data_array = mysqli_fetch_array($data, MYSQLI_NUM)){
+					?>
+					<tr> 
 						 <td><?php echo $data_array[0]?></td>
 						 <td><?php echo $data_array[1]?></td>
-						 <td><?php echo $data_array[3]?></td>
 						 <td><a href="TODO">Řešení</a></td>
 					</tr> 
 					
