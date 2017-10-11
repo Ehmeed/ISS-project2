@@ -1,4 +1,4 @@
 # ISS-project2
 
 
-TODO VERSION
+TODO VERSION, vytvorit variantu, hodnotit studenta
