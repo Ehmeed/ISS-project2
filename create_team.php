@@ -34,7 +34,7 @@ if(isset($_POST['pridat'])){
 				mysqli_query($conn, "DELETE from tym WHERE id_resitel = $id");
 			}
 		}else {
-			$message = 'Upsasds, tým se nepodařilo vytvořit';
+			$message = 'Ups, tým se nepodařilo vytvořit';
 		}
 	}
 
