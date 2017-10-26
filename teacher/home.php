@@ -24,4 +24,6 @@
 </script>    
             
 
-<?php include("teacher_footer.php");?>
+<?php include("teacher_footer.php");
+
+?>

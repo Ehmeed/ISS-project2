@@ -8,7 +8,10 @@ if(!isset($id) or empty($id)){
 	header("Location: home.php");
     exit;
 }
-$my_id = mysqli_fetch_array(mysqli_query($conn, "SELECT id_resitel FROM student WHERE login = '$login'"), MYSQLI_NUM)[0];
+
+$result = $conn->query("SELECT id_resitel FROM student WHERE login = '$login'"); 
+$my_id_arr = $result->fetch_array(MYSQLI_NUM);
+$my_id = $my_id_arr[0];
 //nacteni dat projektu
 $data = mysqli_query($conn,"SELECT DISTINCT projekt.nazev, projekt.popis, projekt.maximum_bodu, projekt.minimum_bodu, projekt.datum_odevzdani, vyucujici.jmeno, predmet.nazev, projekt.datum_prihlaseni FROM projekt, predmet, vyucujici WHERE projekt.id_projekt = $id AND projekt.predmet = predmet.id_predmet AND projekt.zadavatel = vyucujici.id_vyucujici") or die("Cannot access database.").mysqli_error($conn);
 $data_array = mysqli_fetch_array($data, MYSQLI_NUM);
@@ -38,7 +41,10 @@ while($data_array = mysqli_fetch_array($data, MYSQLI_ASSOC)){
   	//kontrola zda jiz student neni prihalseny
 	$team_id = $_POST['tymy'];
 	//TODO CHECK DATe
-	$datum = mysqli_fetch_array(mysqli_query($conn, "SELECT datum_prihlaseni FROM projekt WHERE id_projekt = $id"), MYSQLI_NUM)[0];
+
+	$result = $conn->query("SELECT datum_prihlaseni FROM projekt WHERE id_projekt = $id"); 
+	$date_arr = $result->fetch_array(MYSQLI_NUM);
+	$datum = $date_arr[0];
 	$today = date("Y-m-d H:i:s");
 	if($today > $datum){
 		$message = 'Přihlašování již skončilo';
@@ -62,11 +68,17 @@ while($data_array = mysqli_fetch_array($data, MYSQLI_ASSOC)){
 
 		if($errors == 0 and $reged == 1){
 			$prihlasenych = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM prihlasena_varianta WHERE id_varianta = $variant"));
-			$kapacita = mysqli_fetch_array(mysqli_query($conn, "SELECT maximum_resitelu FROM varianta WHERE id_varianta = $variant"), MYSQLI_NUM)[0];
+			$result = $conn->query("SELECT maximum_resitelu FROM varianta WHERE id_varianta = $variant"); 
+			$kapacita_arr = $result->fetch_array(MYSQLI_NUM);
+			$kapacita= $kapacita_arr[0];
+			
 			if($kapacita <= $prihlasenych){
 				$message = 'Varianta je již plně obsazená';
 			}else {
-				$studentu_v_tymu = mysqli_fetch_array(mysqli_query($conn, "SELECT studentu_v_tymu FROM varianta WHERE id_varianta = $variant"), MYSQLI_NUM)[0];
+				$result = $conn->query("SELECT studentu_v_tymu FROM varianta WHERE id_varianta = $variant"); 
+				$stud_arr = $result->fetch_array(MYSQLI_NUM);
+				$studentu_v_tymu= $stud_arr[0];
+
 				if($studentu_v_tymu > 2){
 					$message = 'Nemůžete se přihlásit sám na týmový projekt';
 				}else {
@@ -78,8 +90,9 @@ while($data_array = mysqli_fetch_array($data, MYSQLI_ASSOC)){
 				}
 			}
 		}else if($reged_as_single == 1 and $_POST[$variant] = 'ODHLÁSIT'){
-			mysqli_query($conn, "DELETE FROM prihlasena_varianta WHERE id_resitel = $my_id AND id_varianta = $variant");
-			$message = 'Byl jste odhlášen';
+			if(mysqli_query($conn, "DELETE FROM prihlasena_varianta WHERE id_resitel = $my_id AND id_varianta = $variant")){
+					$message = 'Byl jste odhlášen';
+			}
 		}
 
 	}else {
@@ -99,13 +112,17 @@ while($data_array = mysqli_fetch_array($data, MYSQLI_ASSOC)){
 			$members_array[] = $members[0];
 		}
 		//kontrola zda je jich spravny pocet pro registraci
-		$studentu_v_tymu = mysqli_fetch_array(mysqli_query($conn, "SELECT studentu_v_tymu FROM varianta WHERE id_varianta = $variant"), MYSQLI_NUM)[0];
+		$result = $conn->query("SELECT studentu_v_tymu FROM varianta WHERE id_varianta = $variant"); 
+		$stud_arr = $result->fetch_array(MYSQLI_NUM);
+		$studentu_v_tymu= $stud_arr[0];
 		if(count($members_array) > $studentu_v_tymu){
 			$message = 'Počet členů v týmu je moc vysoký pro tuto variantu';
 		}else {
 			//kontrola zda neni varianta plna
 			$prihlasenych = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM prihlasena_varianta WHERE id_varianta = $variant"));
-			$kapacita = mysqli_fetch_array(mysqli_query($conn, "SELECT maximum_resitelu FROM varianta WHERE id_varianta = $variant"), MYSQLI_NUM)[0];
+			$result = $conn->query("SELECT maximum_resitelu FROM varianta WHERE id_varianta = $variant"); 
+			$kapacita_arr = $result->fetch_array(MYSQLI_NUM);
+			$kapacita= $kapacita_arr[0];
 			if($kapacita <= $prihlasenych){
 				$message = 'Varianta je již plně obsazená';
 			}else { 

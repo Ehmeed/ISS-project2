@@ -17,8 +17,13 @@ while($data_array = mysqli_fetch_array($data, MYSQLI_ASSOC)){
       //registrovat
       //kontrola zda predmet neni plny
       $registered_students = mysqli_query($conn, "SELECT * FROM zapsany_predmet WHERE id_predmet='$subject'");
-      $max_students = mysqli_query($conn, "SELECT kapacita FROM predmet WHERE id_predmet='$subject'");
-      if(mysqli_num_rows($registered_students) < mysqli_fetch_array($max_students, MYSQLI_ASSOC)['kapacita']){
+      
+
+      $result = $conn->query("SELECT kapacita FROM predmet WHERE id_predmet='$subject'"); 
+      $max_student_arr = $result->fetch_array(MYSQLI_NUM);
+      $max_students = $max_student_arr[0];
+
+      if(mysqli_num_rows($registered_students) < $max_students){
         dbqueryinsert("INSERT INTO zapsany_predmet(login, id_predmet) VALUES('$login', {$data_array['id_predmet']})", $conn);
       }else {
       }

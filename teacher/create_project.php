@@ -5,7 +5,9 @@
     $title = 'Vytvořit nový projekt - Fakultní informační systém';
     include("teacher_header.php"); 
     $login = $_SESSION['login'];
-    $my_id = mysqli_fetch_array(mysqli_query($conn, "SELECT id_vyucujici FROM vyucujici WHERE login = '$login'"),MYSQLI_NUM)[0];
+    $result = $conn->query("SELECT id_vyucujici FROM vyucujici WHERE login = '$login'"); 
+    $my_id_arr = $result->fetch_array(MYSQLI_NUM);
+    $my_id = $my_id_arr[0];
 
     $message = '';
     $nazev = '';

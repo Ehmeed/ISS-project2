@@ -10,13 +10,15 @@ $message = '';
 $name = '';
 $nameError = '';
 
+ 
+
 if(isset($_POST['pridat'])){
 	$jmeno = htmlspecialchars(strip_tags(trim($_POST['jmeno'])));
 
 	if(empty($jmeno) or strlen($jmeno) >= 30){
 		$nameError = 'Název teamu musí mít 1-30 znaků';
 	} else {
-		if(mysqli_query($conn, "INSERT into RESITEL() VALUES()")){
+		if($conn->query("INSERT into resitel() VALUES()")){
 			$id = mysqli_insert_id($conn);
 			if(mysqli_query($conn, "INSERT into tym(id_resitel, nazev_tymu, login_vedouciho) values($id, '$jmeno', '$login')")){
 				
@@ -32,7 +34,7 @@ if(isset($_POST['pridat'])){
 				mysqli_query($conn, "DELETE from tym WHERE id_resitel = $id");
 			}
 		}else {
-			$message = 'Upss, tým se nepodařilo vytvořit';
+			$message = 'Upsasds, tým se nepodařilo vytvořit';
 		}
 	}
 

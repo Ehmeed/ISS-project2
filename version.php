@@ -34,7 +34,10 @@ $prihlasen = mysqli_num_rows(mysqli_query($conn, "SELECT DISTINCT id_varianta FR
 
 $prihlasen = $prihlasen + mysqli_num_rows(mysqli_query($conn, "SELECT DISTINCT id_varianta FROM prihlasena_varianta, tym WHERE  tym.login_vedouciho = '$login' AND tym.id_resitel = prihlasena_varianta.id_resitel AND prihlasena_varianta.id_varianta = $id"));
 
-$datum = mysqli_fetch_array(mysqli_query($conn, "SELECT datum_odevzdani FROM projekt, varianta WHERE varianta.id_varianta = $id AND varianta.projekt = projekt.id_projekt"), MYSQLI_NUM)[0];
+$result = $conn->query("SELECT datum_odevzdani FROM projekt, varianta WHERE varianta.id_varianta = $id AND varianta.projekt = projekt.id_projekt"); 
+$date_arr = $result->fetch_array(MYSQLI_NUM);
+$datum = $date_arr[0];
+
 $today = date("Y-m-d H:i:s");
 if($today > $datum){
 	$canUpload = false;
@@ -93,7 +96,10 @@ include("template/header.php");
 						SELECT clenove_teamu.login_clena FROM clenove_teamu, prihlasena_varianta WHERE clenove_teamu.id_teamu = prihlasena_varianta.id_resitel AND prihlasena_varianta.id_varianta = $id
 					)"), MYSQLI_NUM);
 				if(count($data_array) > 0){
-					$hodnotici = mysqli_fetch_array(mysqli_query($conn, "SELECT jmeno FROM vyucujici WHERE id_vyucujici = $data_array[4]"))[0];
+					
+					$result = $conn->query("SELECT jmeno FROM vyucujici WHERE id_vyucujici = $data_array[4]"); 
+					$hodnotici_arr = $result->fetch_array(MYSQLI_NUM);
+					$hodnotici = $hodnotici_arr[0];
 				?>
 				<br>
 				<h3>Informace o hodnocení</h3>

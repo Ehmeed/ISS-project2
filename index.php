@@ -11,6 +11,7 @@
 	$wrongLoginMessage = "Špatné přihlašovací jméno nebo heslo.";
 	$login = '';
 	$password = '';
+	
 
 	// check is user already logged in, redirect
 	if(isset($_SESSION['login'])){

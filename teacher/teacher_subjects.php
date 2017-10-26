@@ -5,7 +5,9 @@
     $title = 'Předměty - Fakultní informační systém';
     include("teacher_header.php"); 
     $login = $_SESSION['login'];
-    $my_id = mysqli_fetch_array(mysqli_query($conn, "SELECT id_vyucujici FROM vyucujici WHERE login = '$login'"),MYSQLI_NUM)[0];
+    $result = $conn->query("SELECT id_vyucujici FROM vyucujici WHERE login = '$login'"); 
+    $my_id_arr = $result->fetch_array(MYSQLI_NUM);
+    $my_id = $my_id_arr[0];
 
     $query = "SELECT predmet.nazev, predmet.id_predmet, vyucujici.jmeno FROM predmet, vyucujici WHERE predmet.id_garant = vyucujici.id_vyucujici AND (predmet.id_cvicici = $my_id OR predmet.id_prednasejici = $my_id OR predmet.id_garant = $my_id)";
     $data = mysqli_query($conn, $query) or die("Cannot access database.").mysqli_error($conn);

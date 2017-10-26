@@ -5,14 +5,19 @@
 	* Connects to local database
 	*/
 	
-	define('DBHOST', 'localhost');
-	define('DBUSER', 'root');
-	define('DBPASS', '');
-	define('DBNAME', 'katarina');
+	define('DBHOST', 'localhost:/var/run/mysql/mysql.sock');
+	define('DBUSER', 'xhelda00');
+	define('DBPASS', 'asu7undu');
+	define('DBNAME', 'xhelda00');
+
+	$path = "localhost:/var/run/mysql/mysql.sock";
+	$login = "/var/run/mysql/mysql.sock";
+	$user = "xhelda00";
+	$pass = "asu7undu";
+	$db = "xhelda00";
+	$conn = new MySQLi('localhost', $user, $pass, $db, 0,$login);
 	
 	//error_reporting(0);
-
-	$conn = mysqli_connect(DBHOST,DBUSER,DBPASS, DBNAME);
 	
 	if ( !$conn ) {
 		die("Error establishing database connection");
