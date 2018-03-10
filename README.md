@@ -2,6 +2,4 @@
 
 
 
-edit predmetu must be done biatch,
-refactor codu must not be done
-vytvorit vzorovou db naplneni dat
+final grade 29/30
